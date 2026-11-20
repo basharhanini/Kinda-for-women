@@ -1,5 +1,22 @@
 {
-  "products": [],
+  "products": [
+    {
+      "id": 1795206429313,
+      "name": "تتبن",
+      "price": 50,
+      "desc": "تتتي",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "image": "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795206426215_0.jpg",
+      "images": [
+        "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795206426215_0.jpg"
+      ]
+    }
+  ],
   "whatsapp": "970597700074",
   "pin": "554787",
   "banner": {
