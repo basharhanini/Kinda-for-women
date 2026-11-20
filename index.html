@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kinda for women -  كندة للنساء </title>
-    <!-- Tailwind CSS -->
+    <title>Kinda for women - كندة</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Tajawal', sans-serif; }
-        .hidden-pin-pad { display: none; }
     </style>
 </head>
 <body class="bg-pink-50 text-gray-800 min-h-screen flex flex-col justify-between">
@@ -18,11 +16,19 @@
     <header class="bg-white shadow-sm sticky top-0 z-40">
         <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
             <!-- Logo Area -->
-            <div class="flex items-center space-x-3 space-x-reverse">
-                <img src="1000119527.png" alt="Kinda for women" class="h-12 object-contain">
+            <div class="flex items-center">
+                <img id="storeLogoImg" src="logo.png" alt="Kinda for women" class="h-12 object-contain hidden" onload="this.classList.remove('hidden'); document.getElementById('fallbackLogo').classList.add('hidden');" onerror="this.classList.add('hidden'); document.getElementById('fallbackLogo').classList.remove('hidden');">
+                <div id="fallbackLogo" class="flex items-center space-x-2 space-x-reverse bg-pink-100/70 px-3 py-1.5 rounded-2xl border border-pink-200">
+                    <span class="text-pink-600 text-lg">❤️</span>
+                    <div>
+                        <h1 class="font-black text-pink-600 text-base leading-none">Kindä كندة</h1>
+                        <span class="text-[10px] text-gray-500 font-medium tracking-wider">for women</span>
+                    </div>
+                </div>
             </div>
-            <!-- Settings / Owner Trigger (Triple click) -->
-            <button id="settingsBtn" class="p-2 text-gray-600 hover:text-pink-600 transition focus:outline-none" title="الإعدادات">
+            
+            <!-- Settings / Owner Trigger (Triple Tap) -->
+            <button id="settingsBtn" class="p-2 text-gray-400 hover:text-pink-600 transition focus:outline-none" title="الإعدادات">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -34,24 +40,24 @@
     <!-- Main Content -->
     <main class="max-w-4xl mx-auto px-4 py-6 flex-grow w-full">
         
-        <!-- Hero / Season Section (Editable) -->
+        <!-- Hero / Season Section -->
         <div id="seasonBanner" class="bg-gradient-to-r from-pink-400 to-pink-500 rounded-2xl p-6 text-white text-center shadow-md mb-8 relative">
-            <h1 id="bannerTitle" class="text-2xl font-black mb-2">تشكيلة الموسم الجديدة</h1>
-            <p id="bannerDesc" class="text-pink-100 text-sm">أرقى صيحات الموضة النسائية المميزة بأفضل الأسعار</p>
+            <h2 id="bannerTitle" class="text-2xl font-black mb-2">تشكيلة الموسم الجديدة</h2>
+            <p id="bannerDesc" class="text-pink-100 text-sm whitespace-pre-line">أرقى صيحات الموضة النسائية المميزة بأفضل الأسعار</p>
             <div class="mt-4 inline-block bg-white text-pink-600 px-4 py-1.5 rounded-full text-xs font-bold shadow-sm">
                 توصيل لجميع المناطق <span class="text-gray-800 font-normal mr-1">( التوصيل مجاني في نابلس )</span>
             </div>
         </div>
 
         <!-- Products Grid -->
-        <h2 class="text-lg font-bold text-gray-800 mb-4 border-r-4 border-pink-500 pr-2">المنتجات المتوفرة</h2>
+        <h3 class="text-lg font-bold text-gray-800 mb-4 border-r-4 border-pink-500 pr-2">المنتجات المتوفرة</h3>
         <div id="productsGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-10">
-            <!-- المنتجات ستظهر هنا برمجياً -->
+            <p class="text-gray-400 text-sm col-span-full text-center py-6">جاري تحميل المنتجات...</p>
         </div>
 
         <!-- Cart Section -->
         <div class="bg-white rounded-2xl shadow-sm p-5 border border-pink-100 mb-10">
-            <h2 class="text-lg font-bold text-gray-800 mb-3">سلة المشتريات</h2>
+            <h3 class="text-lg font-bold text-gray-800 mb-3">سلة المشتريات</h3>
             <div id="cartItems" class="divide-y divide-gray-100 mb-4">
                 <p class="text-gray-400 text-sm py-2">السلة فارغة حالياً</p>
             </div>
@@ -73,7 +79,7 @@
 
             <!-- Checkout Form -->
             <div class="space-y-3 bg-pink-50/50 p-4 rounded-xl border border-pink-100">
-                <h3 class="font-bold text-sm text-gray-700">معلومات التوصيل</h3>
+                <h4 class="font-bold text-sm text-gray-700">معلومات التوصيل</h4>
                 <input type="text" id="customerName" placeholder="الاسم الكامل" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-pink-500">
                 <input type="tel" id="customerPhone" placeholder="رقم الهاتف" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-pink-500">
                 
@@ -103,14 +109,14 @@
 
     <!-- Footer -->
     <footer class="bg-white border-t py-4 text-center text-xs text-gray-500">
-        جميع الحقوق محفوطة © Kinda for women 2026
+        جميع الحقوق محفوظة © Kinda for women 2026
     </footer>
 
-    <!-- PIN Pad Modal (Hidden by default) -->
+    <!-- PIN Pad Modal -->
     <div id="pinModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden">
         <div class="bg-white rounded-2xl p-6 w-80 shadow-xl text-center">
-            <h3 class="font-bold text-lg mb-2 text-gray-800">إدخال الرمز السري</h3>
-            <p class="text-xs text-gray-500 mb-4">أدخل الرقم السري المكون من أرقام للوصول للإعدادات</p>
+            <h3 class="font-bold text-lg mb-1 text-gray-800">إدخال الرمز السري</h3>
+            <p class="text-xs text-gray-500 mb-4">أدخل الأرقام للوصول للوحة التحكم</p>
             <div id="pinDisplay" class="bg-gray-100 p-3 rounded-xl text-2xl font-mono tracking-widest mb-4 h-12 flex items-center justify-center text-pink-600"></div>
             
             <div class="grid grid-cols-3 gap-2 mb-4">
@@ -135,63 +141,292 @@
         <div class="bg-white rounded-2xl p-6 w-full max-w-lg shadow-xl max-h-[90vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-4 border-b pb-2">
                 <h3 class="font-bold text-lg text-pink-600">لوحة تحكم المالك</h3>
-                <button onclick="closeAdminModal()" class="text-gray-400 hover:text-gray-600 font-bold">✕</button>
+                <button onclick="closeAdminModal()" class="text-gray-400 hover:text-gray-600 font-bold text-lg">✕</button>
             </div>
 
-            <!-- Settings Tabs / Sections -->
-            <div class="space-y-6">
-                <!-- WhatsApp Number -->
+            <div id="syncStatus" class="hidden mb-4 p-3 rounded-xl text-xs font-bold text-center bg-blue-50 text-blue-700 border border-blue-200">
+                جاري المزامنة والرفع إلى GitHub... ⏳
+            </div>
+
+            <div class="space-y-5">
+                <!-- GitHub Token Setup -->
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                    <h4 class="font-bold text-sm text-gray-800 mb-1">🔗 مفتاح الربط التلقائي مع GitHub</h4>
+                    <p class="text-[11px] text-gray-500 mb-2">ضعه مرة واحدة لرفع الصور وحفظ المنتجات تلقائياً لجميع الزبائن</p>
+                    <input type="password" id="githubTokenInput" placeholder="الصق رمز ghp_... هنا" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm mb-2">
+                    <button onclick="saveGithubToken()" class="bg-gray-800 text-white text-xs font-bold py-2 px-4 rounded-lg">حفظ مفتاح الربط</button>
+                </div>
+
+                <!-- Upload Logo Directly -->
                 <div class="bg-pink-50 p-4 rounded-xl border border-pink-100">
-                    <h4 class="font-bold text-sm text-gray-700 mb-2">رقم الواتساب لاستقبال الطلبات</h4>
-                    <input type="text" id="adminWhatsapp" placeholder="مثال: 970599000000" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm mb-2">
-                    <button onclick="saveWhatsapp()" class="bg-pink-600 text-white text-xs font-bold py-2 px-4 rounded-lg">حفظ الرقم</button>
+                    <h4 class="font-bold text-sm text-gray-700 mb-2">🖼️ رفع شعار المتجر من الاستوديو</h4>
+                    <input type="file" id="logoFileInput" accept="image/*" class="w-full text-xs bg-white p-2 rounded-lg border border-gray-200 mb-2">
+                    <button onclick="uploadLogoToGithub()" class="bg-pink-600 text-white text-xs font-bold py-2 px-4 rounded-lg">رفع واعتماد الشعار</button>
+                </div>
+
+                <!-- Add Product with Studio Upload -->
+                <div class="bg-pink-50 p-4 rounded-xl border border-pink-100">
+                    <h4 class="font-bold text-sm text-gray-700 mb-2">➕ إضافة منتج جديد (من الاستوديو)</h4>
+                    <input type="text" id="newProdName" placeholder="اسم المنتج" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm mb-2">
+                    <input type="number" id="newProdPrice" placeholder="السعر (بالشيقل)" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm mb-2">
+                    <label class="block text-xs text-gray-600 mb-1">اختر صورة المنتج من الهاتف:</label>
+                    <input type="file" id="newProdFile" accept="image/*" class="w-full text-xs bg-white p-2 rounded-lg border border-gray-200 mb-3">
+                    <button onclick="addProductWithImage()" class="w-full bg-pink-600 hover:bg-pink-700 text-white text-xs font-bold py-2.5 px-4 rounded-lg shadow-sm">رفع الصورة وإضافة المنتج</button>
+                </div>
+
+                <!-- Existing Products List -->
+                <div class="bg-white p-4 rounded-xl border border-gray-200">
+                    <h4 class="font-bold text-sm text-gray-700 mb-2">📦 المنتجات الحالية (حذف)</h4>
+                    <div id="adminProductsList" class="space-y-2 max-h-48 overflow-y-auto"></div>
                 </div>
 
                 <!-- Banner Customizer -->
                 <div class="bg-pink-50 p-4 rounded-xl border border-pink-100">
-                    <h4 class="font-bold text-sm text-gray-700 mb-2">تعديل مربع تشكيلة الموسم</h4>
+                    <h4 class="font-bold text-sm text-gray-700 mb-2">✏️ تعديل مربع تشكيلة الموسم</h4>
                     <input type="text" id="adminBannerTitle" placeholder="عنوان المربع" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm mb-2">
-                    <textarea id="adminBannerDesc" placeholder="الوصف داخل المربع" rows="2" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm mb-2"></textarea>
-                    <button onclick="saveBanner()" class="bg-pink-600 text-white text-xs font-bold py-2 px-4 rounded-lg">حفظ التعديل</button>
+                    <textarea id="adminBannerDesc" placeholder="النص داخل المربع" rows="2" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm mb-2"></textarea>
+                    <button onclick="saveBanner()" class="bg-pink-600 text-white text-xs font-bold py-2 px-4 rounded-lg">حفظ ونشر التعديل</button>
+                </div>
+
+                <!-- WhatsApp Number -->
+                <div class="bg-pink-50 p-4 rounded-xl border border-pink-100">
+                    <h4 class="font-bold text-sm text-gray-700 mb-2">📞 رقم الواتساب لاستقبال الطلبات</h4>
+                    <input type="text" id="adminWhatsapp" placeholder="مثال: 970599000000" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm mb-2">
+                    <button onclick="saveWhatsapp()" class="bg-pink-600 text-white text-xs font-bold py-2 px-4 rounded-lg">حفظ الرقم</button>
                 </div>
 
                 <!-- Change PIN -->
                 <div class="bg-pink-50 p-4 rounded-xl border border-pink-100">
-                    <h4 class="font-bold text-sm text-gray-700 mb-2">تغيير الرقم السري</h4>
-                    <input type="password" id="newPinInput" placeholder="أدخل الرقم السري الجديد" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm mb-2">
+                    <h4 class="font-bold text-sm text-gray-700 mb-2">🔐 تغيير الرقم السري</h4>
+                    <input type="number" id="newPinInput" placeholder="أدخل الرقم السري الجديد (أرقام)" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm mb-2">
                     <button onclick="saveNewPin()" class="bg-pink-600 text-white text-xs font-bold py-2 px-4 rounded-lg">تحديث الرقم السري</button>
-                </div>
-
-                <!-- Add/Manage Products -->
-                <div class="bg-pink-50 p-4 rounded-xl border border-pink-100">
-                    <h4 class="font-bold text-sm text-gray-700 mb-2">إضافة منتج جديد</h4>
-                    <input type="text" id="newProdName" placeholder="اسم المنتج" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm mb-2">
-                    <input type="number" id="newProdPrice" placeholder="السعر (بالشيقل)" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm mb-2">
-                    <input type="text" id="newProdImg" placeholder="رابط صورة المنتج (URL)" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm mb-2">
-                    <button onclick="addProduct()" class="bg-pink-600 text-white text-xs font-bold py-2 px-4 rounded-lg">إضافة المنتج</button>
-                </div>
-
-                <!-- Existing Products List -->
-                <div>
-                    <h4 class="font-bold text-sm text-gray-700 mb-2">المنتجات الحالية (حذف / تعديل)</h4>
-                    <div id="adminProductsList" class="space-y-2 max-h-48 overflow-y-auto"></div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Default Data
-        let defaultProducts = [
-            { id: 1, name: 'فستان أنيق مميز', price: 120, image: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500' },
-            { id: 2, name: 'طقم شتوي راقي', price: 150, image: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=500' }
-        ];
+        // GitHub Repository Info
+        const GITHUB_OWNER = 'basharhanini';
+        const GITHUB_REPO = 'Kinda-for-women';
+        const DATA_FILE = 'store-data.json';
 
-        let products = JSON.parse(localStorage.getItem('kinda_products')) || defaultProducts;
+        let storeState = {
+            products: [
+                { id: 1, name: 'فستان أنيق مميز', price: 120, image: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500' },
+                { id: 2, name: 'طقم شتوي راقي', price: 150, image: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=500' }
+            ],
+            whatsapp: '970599000000',
+            pin: '1234',
+            banner: {
+                title: 'تشكيلة الموسم الجديدة',
+                desc: 'أرقى صيحات الموضة النسائية المميزة بأفضل الأسعار'
+            },
+            logoUrl: 'logo.png'
+        };
+
         let cart = [];
-        let whatsappNumber = localStorage.getItem('kinda_whatsapp') || '970599000000';
-        let storePin = localStorage.getItem('kinda_pin') || '1234';
-        let bannerData = JSON.parse(localStorage.getItem('kinda_banner')) || { title: 'تشكيلة الموسم الجديدة', desc: 'أرقى صيحات الموضة النسائية المميزة بأفضل الأسعار' };
+
+        // Load data from GitHub on startup so all customers see live updates
+        async function loadStoreData() {
+            try {
+                const res = await fetch(`https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/main/${DATA_FILE}?t=${Date.now()}`);
+                if (res.ok) {
+                    const data = await res.json();
+                    storeState = { ...storeState, ...data };
+                }
+            } catch (e) {
+                console.log('Using default or cached store state');
+            }
+            applyStoreState();
+        }
+
+        function applyStoreState() {
+            document.getElementById('bannerTitle').innerText = storeState.banner.title;
+            document.getElementById('bannerDesc').innerText = storeState.banner.desc;
+            if (storeState.logoUrl) {
+                document.getElementById('storeLogoImg').src = storeState.logoUrl + '?t=' + Date.now();
+            }
+            renderProducts();
+        }
+
+        // Convert File to Base64
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result.split(',')[1]);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        // Upload any file to GitHub API
+        async function githubUploadFile(path, base64Content, commitMsg) {
+            const token = localStorage.getItem('kinda_gh_token');
+            if (!token) {
+                alert('الرجاء إدخال وحفظ مفتاح الربط (GitHub Token) أولاً في أعلى لوحة التحكم!');
+                throw new Error('No token');
+            }
+
+            const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}`;
+            let sha = null;
+
+            // Check if file exists to get SHA
+            const getRes = await fetch(url, {
+                headers: { 'Authorization': `token ${token}` }
+            });
+            if (getRes.ok) {
+                const existing = await getRes.json();
+                sha = existing.sha;
+            }
+
+            const body = {
+                message: commitMsg,
+                content: base64Content
+            };
+            if (sha) body.sha = sha;
+
+            const putRes = await fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            });
+
+            if (!putRes.ok) {
+                const err = await putRes.json();
+                alert('حدث خطأ أثناء الرفع إلى GitHub: ' + (err.message || 'تأكد من صحة المفتاح'));
+                throw new Error(err.message);
+            }
+            return await putRes.json();
+        }
+
+        // Sync storeState to GitHub JSON file
+        async function syncStateToGithub() {
+            showSync(true);
+            try {
+                const jsonStr = JSON.stringify(storeState, null, 2);
+                const base64Json = btoa(unescape(encodeURIComponent(jsonStr)));
+                await githubUploadFile(DATA_FILE, base64Json, 'Update store data');
+                applyStoreState();
+                renderAdminProducts();
+                alert('تم الحفظ والنشر بنجاح! سيظهر التحديث لجميع الزبائن خلال ثوانٍ.');
+            } catch (e) {
+                console.error(e);
+            } finally {
+                showSync(false);
+            }
+        }
+
+        function showSync(show) {
+            const el = document.getElementById('syncStatus');
+            if (show) el.classList.remove('hidden');
+            else el.classList.add('hidden');
+        }
+
+        // Upload Logo
+        async function uploadLogoToGithub() {
+            const fileInput = document.getElementById('logoFileInput');
+            if (!fileInput.files[0]) {
+                alert('اختر صورة الشعار من الهاتف أولاً');
+                return;
+            }
+            showSync(true);
+            try {
+                const file = fileInput.files[0];
+                const ext = file.name.split('.').pop();
+                const fileName = `logo.${ext}`;
+                const base64 = await fileToBase64(file);
+                await githubUploadFile(fileName, base64, 'Upload store logo');
+                storeState.logoUrl = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/main/${fileName}`;
+                await syncStateToGithub();
+                fileInput.value = '';
+            } catch (e) {
+                showSync(false);
+            }
+        }
+
+        // Add Product with Image Upload
+        async function addProductWithImage() {
+            const name = document.getElementById('newProdName').value.trim();
+            const price = parseFloat(document.getElementById('newProdPrice').value);
+            const fileInput = document.getElementById('newProdFile');
+
+            if (!name || isNaN(price) || !fileInput.files[0]) {
+                alert('الرجاء كتابة اسم المنتج، السعر، واختيار صورة من الاستوديو');
+                return;
+            }
+
+            showSync(true);
+            try {
+                const file = fileInput.files[0];
+                const ext = file.name.split('.').pop();
+                const fileName = `images/prod_${Date.now()}.${ext}`;
+                const base64 = await fileToBase64(file);
+
+                await githubUploadFile(fileName, base64, `Add product ${name}`);
+                const imageUrl = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/main/${fileName}`;
+
+                storeState.products.push({
+                    id: Date.now(),
+                    name,
+                    price,
+                    image: imageUrl
+                });
+
+                document.getElementById('newProdName').value = '';
+                document.getElementById('newProdPrice').value = '';
+                fileInput.value = '';
+
+                await syncStateToGithub();
+            } catch (e) {
+                showSync(false);
+            }
+        }
+
+        async function deleteProduct(id) {
+            if (!confirm('هل أنت متأكد من حذف هذا المنتج؟')) return;
+            storeState.products = storeState.products.filter(p => p.id !== id);
+            await syncStateToGithub();
+        }
+
+        function saveGithubToken() {
+            const t = document.getElementById('githubTokenInput').value.trim();
+            if (t) {
+                localStorage.setItem('kinda_gh_token', t);
+                alert('تم حفظ مفتاح الربط في هاتفك بنجاح!');
+            }
+        }
+
+        async function saveWhatsapp() {
+            const val = document.getElementById('adminWhatsapp').value.trim();
+            if (val) {
+                storeState.whatsapp = val;
+                await syncStateToGithub();
+            }
+        }
+
+        async function saveBanner() {
+            const t = document.getElementById('adminBannerTitle').value.trim();
+            const d = document.getElementById('adminBannerDesc').value.trim();
+            if (t && d) {
+                storeState.banner = { title: t, desc: d };
+                await syncStateToGithub();
+            }
+        }
+
+        async function saveNewPin() {
+            const p = document.getElementById('newPinInput').value.trim();
+            if (p.length >= 4) {
+                storeState.pin = p;
+                document.getElementById('newPinInput').value = '';
+                await syncStateToGithub();
+            } else {
+                alert('الرقم السري يجب أن يكون 4 أرقام على الأقل');
+            }
+        }
 
         // Triple Click Settings Trigger
         let clickCount = 0;
@@ -199,7 +434,7 @@
         document.getElementById('settingsBtn').addEventListener('click', () => {
             clickCount++;
             if (clickCount === 1) {
-                clickTimer = setTimeout(() => { clickCount = 0; }, 600);
+                clickTimer = setTimeout(() => { clickCount = 0; }, 700);
             } else if (clickCount === 3) {
                 clearTimeout(clickTimer);
                 clickCount = 0;
@@ -207,20 +442,20 @@
             }
         });
 
+        let enteredPin = '';
         function openPinModal() {
+            enteredPin = '';
             document.getElementById('pinDisplay').innerText = '';
             document.getElementById('pinModal').classList.remove('hidden');
         }
         function closePinModal() {
             document.getElementById('pinModal').classList.add('hidden');
         }
-
-        let enteredPin = '';
         function pressPin(num) {
             if (enteredPin.length < 6) {
                 enteredPin += num;
                 document.getElementById('pinDisplay').innerText = '*'.repeat(enteredPin.length);
-                if (enteredPin === storePin) {
+                if (enteredPin === storeState.pin) {
                     closePinModal();
                     enteredPin = '';
                     openAdminModal();
@@ -233,9 +468,10 @@
         }
 
         function openAdminModal() {
-            document.getElementById('adminWhatsapp').value = whatsappNumber;
-            document.getElementById('adminBannerTitle').value = bannerData.title;
-            document.getElementById('adminBannerDesc').value = bannerData.desc;
+            document.getElementById('githubTokenInput').value = localStorage.getItem('kinda_gh_token') || '';
+            document.getElementById('adminWhatsapp').value = storeState.whatsapp;
+            document.getElementById('adminBannerTitle').value = storeState.banner.title;
+            document.getElementById('adminBannerDesc').value = storeState.banner.desc;
             renderAdminProducts();
             document.getElementById('adminModal').classList.remove('hidden');
         }
@@ -243,83 +479,31 @@
             document.getElementById('adminModal').classList.add('hidden');
         }
 
-        function saveWhatsapp() {
-            let val = document.getElementById('adminWhatsapp').value.trim();
-            if (val) {
-                whatsappNumber = val;
-                localStorage.setItem('kinda_whatsapp', whatsappNumber);
-                alert('تم حفظ رقم الواتساب بنجاح');
-            }
-        }
-
-        function saveBanner() {
-            let t = document.getElementById('adminBannerTitle').value.trim();
-            let d = document.getElementById('adminBannerDesc').value.trim();
-            if (t && d) {
-                bannerData = { title: t, desc: d };
-                localStorage.setItem('kinda_banner', JSON.stringify(bannerData));
-                document.getElementById('bannerTitle').innerText = t;
-                document.getElementById('bannerDesc').innerText = d;
-                alert('تم تحديث التشكيلة بنجاح');
-            }
-        }
-
-        function saveNewPin() {
-            let p = document.getElementById('newPinInput').value.trim();
-            if (p.length >= 4) {
-                storePin = p;
-                localStorage.setItem('kinda_pin', storePin);
-                alert('تم تغيير الرقم السري بنجاح');
-                document.getElementById('newPinInput').value = '';
-            } else {
-                alert('الرقم السري يجب أن يكون 4 خانات على الأقل');
-            }
-        }
-
-        function addProduct() {
-            let name = document.getElementById('newProdName').value.trim();
-            let price = parseFloat(document.getElementById('newProdPrice').value);
-            let image = document.getElementById('newProdImg').value.trim();
-            if (name && !isNaN(price) && image) {
-                let newP = { id: Date.now(), name, price, image };
-                products.push(newP);
-                localStorage.setItem('kinda_products', JSON.stringify(products));
-                document.getElementById('newProdName').value = '';
-                document.getElementById('newProdPrice').value = '';
-                document.getElementById('newProdImg').value = '';
-                renderProducts();
-                renderAdminProducts();
-                alert('تمت إضافة المنتج بنجاح');
-            } else {
-                alert('الرجاء تعبئة كافة حقول المنتج بشكل صحيح');
-            }
-        }
-
-        function deleteProduct(id) {
-            products = products.filter(p => p.id !== id);
-            localStorage.setItem('kinda_products', JSON.stringify(products));
-            renderProducts();
-            renderAdminProducts();
-        }
-
         function renderAdminProducts() {
-            let container = document.getElementById('adminProductsList');
-            container.innerHTML = products.map(p => `
-                <div class="flex justify-between items-center bg-white p-2 rounded-lg border text-xs">
-                    <span class="font-bold">${p.name} - ${p.price} شيقل</span>
-                    <button onclick="deleteProduct(${p.id})" class="text-red-600 hover:text-red-800 font-bold">حذف</button>
+            const container = document.getElementById('adminProductsList');
+            container.innerHTML = storeState.products.map(p => `
+                <div class="flex justify-between items-center bg-gray-50 p-2 rounded-lg border text-xs">
+                    <div class="flex items-center space-x-2 space-x-reverse">
+                        <img src="${p.image}" class="w-8 h-8 rounded object-cover">
+                        <span class="font-bold">${p.name} - ${p.price} شيقل</span>
+                    </div>
+                    <button onclick="deleteProduct(${p.id})" class="text-red-600 hover:text-red-800 font-bold px-2">حذف</button>
                 </div>
             `).join('');
         }
 
         function renderProducts() {
-            let grid = document.getElementById('productsGrid');
-            grid.innerHTML = products.map(p => `
+            const grid = document.getElementById('productsGrid');
+            if (storeState.products.length === 0) {
+                grid.innerHTML = '<p class="text-gray-400 text-sm col-span-full text-center py-6">لا توجد منتجات مضافة حالياً</p>';
+                return;
+            }
+            grid.innerHTML = storeState.products.map(p => `
                 <div class="bg-white rounded-2xl shadow-sm overflow-hidden border border-pink-100 flex flex-col justify-between">
                     <div>
-                        <img src="${p.image}" alt="${p.name}" class="w-full h-36 object-cover">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-40 object-cover">
                         <div class="p-3">
-                            <h3 class="font-bold text-sm text-gray-800 mb-1">${p.name}</h3>
+                            <h4 class="font-bold text-sm text-gray-800 mb-1">${p.name}</h4>
                             <p class="text-pink-600 font-bold text-xs">${p.price} شيقل</p>
                         </div>
                     </div>
@@ -331,8 +515,8 @@
         }
 
         function addToCart(id) {
-            let prod = products.find(p => p.id === id);
-            let exist = cart.find(item => item.id === id);
+            const prod = storeState.products.find(p => p.id === id);
+            const exist = cart.find(item => item.id === id);
             if (exist) {
                 exist.qty++;
             } else {
@@ -351,7 +535,7 @@
         }
 
         function renderCart() {
-            let container = document.getElementById('cartItems');
+            const container = document.getElementById('cartItems');
             if (cart.length === 0) {
                 container.innerHTML = '<p class="text-gray-400 text-sm py-2">السلة فارغة حالياً</p>';
                 document.getElementById('subTotal').innerText = '0 شيقل';
@@ -368,15 +552,15 @@
                     </div>
                     <div class="flex items-center space-x-3 space-x-reverse">
                         <span class="font-bold text-pink-600">${item.price * item.qty} شيقل</span>
-                        <button onclick="removeFromCart(${item.id})" class="text-red-500 text-xs">✕</button>
+                        <button onclick="removeFromCart(${item.id})" class="text-red-500 text-xs font-bold">✕</button>
                     </div>
                 </div>
             `).join('');
 
-            let sub = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            let cityChoice = document.querySelector('input[name="cityChoice"]:checked').value;
-            let delivery = (cityChoice === 'other') ? 20 : 0;
-            let total = sub + delivery;
+            const sub = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const cityChoice = document.querySelector('input[name="cityChoice"]:checked').value;
+            const delivery = (cityChoice === 'other') ? 20 : 0;
+            const total = sub + delivery;
 
             document.getElementById('subTotal').innerText = sub + ' شيقل';
             document.getElementById('deliveryCost').innerText = (delivery === 0) ? 'مجاني (نابلس)' : delivery + ' شيقل';
@@ -384,11 +568,11 @@
         }
 
         function sendOrderWhatsApp() {
-            let name = document.getElementById('customerName').value.trim();
-            let phone = document.getElementById('customerPhone').value.trim();
-            let address = document.getElementById('customerAddress').value.trim();
-            let cityChoice = document.querySelector('input[name="cityChoice"]:checked').value;
-            let cityName = (cityChoice === 'nablus') ? 'نابلس (توصيل مجاني)' : 'بقية المدن (مع رسوم توصيل 20 شيقل)';
+            const name = document.getElementById('customerName').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
+            const address = document.getElementById('customerAddress').value.trim();
+            const cityChoice = document.querySelector('input[name="cityChoice"]:checked').value;
+            const cityName = (cityChoice === 'nablus') ? 'نابلس (توصيل مجاني)' : 'بقية المدن (مع رسوم توصيل 20 شيقل)';
 
             if (!name || !phone || !address) {
                 alert('الرجاء إدخال الاسم، رقم الهاتف، وعنوان التوصيل بالتفصيل');
@@ -399,28 +583,26 @@
                 return;
             }
 
-            let text = 🛍️ *طلب جديد من متجر Kinda for women*%0A%0A;
-            text += 👤 *الاسم:* ${name}%0A;
-            text += 📞 *الهاتف:* ${phone}%0A;
-            text += 🏙️ *المدينة:* ${cityName}%0A;
-            text += 📍 *العنوان:* ${address}%0A%0A;
-            text += 📦 *المنتجات المطلوبة:*%0A;
+            let text = `🛍️ *طلب جديد من متجر Kinda for women*%0A%0A`;
+            text += `👤 *الاسم:* ${name}%0A`;
+            text += `📞 *الهاتف:* ${phone}%0A`;
+            text += `🏙️ *المدينة:* ${cityName}%0A`;
+            text += `📍 *العنوان:* ${address}%0A%0A`;
+            text += `📦 *المنتجات المطلوبة:*%0A`;
             cart.forEach(item => {
-                text += - ${item.name} (${item.qty}x) : ${item.price * item.qty} شيقل%0A;
+                text += `- ${item.name} (${item.qty}x) : ${item.price * item.qty} شيقل%0A`;
             });
-            let sub = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            let delivery = (cityChoice === 'other') ? 20 : 0;
-            text += %0Aمجموع المنتجات: ${sub} شيقل;
-            text += %0Aالتوصيل: ${delivery === 0 ? 'مجاني' : delivery + ' شيقل'};
-            text += %0A💰 *الإجمالي النهائي: ${sub + delivery} شيقل*;
+            const sub = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const delivery = (cityChoice === 'other') ? 20 : 0;
+            text += `%0Aمجموع المنتجات: ${sub} شيقل`;
+            text += `%0Aالتوصيل: ${delivery === 0 ? 'مجاني' : delivery + ' شيقل'}`;
+            text += `%0A💰 *الإجمالي النهائي: ${sub + delivery} شيقل*`;
 
-            window.open(https://wa.me/${whatsappNumber}?text=${text}, '_blank');
+            window.open(`https://wa.me/${storeState.whatsapp}?text=${text}`, '_blank');
         }
 
-        // Init Banner text
-        document.getElementById('bannerTitle').innerText = bannerData.title;
-        document.getElementById('bannerDesc').innerText = bannerData.desc;
-        renderProducts();
+        // Start App
+        loadStoreData();
     </script>
 </body>
 </html>
