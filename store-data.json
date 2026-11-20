@@ -1,21 +1,6 @@
 {
   "products": [
     {
-      "id": 1795175655388,
-      "name": "االىت",
-      "price": 558,
-      "desc": "فاا",
-      "sizes": [
-        "S",
-        "M"
-      ],
-      "image": "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795175648684_0.jpg",
-      "images": [
-        "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795175648684_0.jpg",
-        "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795175652457_1.jpg"
-      ]
-    },
-    {
       "id": 1795176634047,
       "name": "منتج 445",
       "price": 58,
