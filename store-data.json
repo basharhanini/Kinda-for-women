@@ -1,19 +1,19 @@
 {
   "products": [
     {
-      "id": 1795206429313,
-      "name": "تتبن",
+      "id": 1795206492588,
+      "name": "بجامة ستاتي - لون أبيض اوف وايت",
       "price": 50,
-      "desc": "تتتي",
+      "desc": "متوفر لون ابيض حاليا فقط",
       "sizes": [
-        "S",
         "M",
         "L",
-        "XL"
+        "XL",
+        "XXL"
       ],
-      "image": "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795206426215_0.jpg",
+      "image": "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795206488169_0.jpg",
       "images": [
-        "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795206426215_0.jpg"
+        "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795206488169_0.jpg"
       ]
     }
   ],
