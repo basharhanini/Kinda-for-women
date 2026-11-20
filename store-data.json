@@ -1,12 +1,6 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "فستان أنيق مميز",
-      "price": 120,
-      "image": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500"
-    },
-    {
       "id": 2,
       "name": "طقم شتوي راقي",
       "price": 150,
