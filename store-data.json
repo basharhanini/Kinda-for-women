@@ -1,26 +1,5 @@
 {
-  "products": [
-    {
-      "id": 1795176634047,
-      "name": "منتج 445",
-      "price": 58,
-      "desc": "تلتو",
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL",
-        "XXL"
-      ],
-      "image": "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795176621437_0.jpg",
-      "images": [
-        "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795176621437_0.jpg",
-        "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795176624911_1.jpg",
-        "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795176627680_2.jpg",
-        "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795176631581_3.jpg"
-      ]
-    }
-  ],
+  "products": [],
   "whatsapp": "970597700074",
   "pin": "554787",
   "banner": {
