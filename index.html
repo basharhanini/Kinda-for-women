@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><script>(function(){
+function slug(s){
+  try{return s.trim().toLowerCase().replace(/[^\p{L}\p{N}\s_-]/gu,'').replace(/\s+/g,'-');}
+  catch(e){return s.trim().toLowerCase().replace(/[^a-z0-9\s_-]/g,'').replace(/\s+/g,'-');}
+}
+function findHashTarget(hash){
+  if(!hash||hash==='#')return null;
+  var raw=hash.charAt(0)==='#'?hash.slice(1):hash;
+  var dec=raw;
+  try{dec=decodeURIComponent(raw);}catch(e){}
+  var el=document.getElementById(raw)||document.getElementById(dec);
+  if(el)return el;
+  try{
+    if(typeof CSS!=='undefined'&&CSS.escape){
+      el=document.querySelector('[name="'+CSS.escape(raw)+'"]')||
+         document.querySelector('[name="'+CSS.escape(dec)+'"]');
+    }else{
+      var named=document.getElementsByName(raw);
+      if(named&&named.length>0)return named[0];
+    }
+  }catch(e){}
+  if(el)return el;
+  var targetSlug=slug(dec);
+  if(targetSlug){
+    var headings=document.querySelectorAll('h1,h2,h3,h4,h5,h6');
+    for(var i=0;i<headings.length;i++){
+      if(slug(headings[i].textContent||'')===targetSlug)return headings[i];
+    }
+  }
+  return null;
+}
+function getInPageHash(a,href){
+  if(href.charAt(0)==='#')return href;
+  try{
+    var u=new URL(href,window.location.href);
+    if(u.hash&&u.origin===window.location.origin&&u.pathname===window.location.pathname){
+      return u.hash;
+    }
+  }catch(e){}
+  return null;
+}
+function findAnchor(target){
+  var el=target instanceof Element?target:(target&&target.parentElement?target.parentElement:null);
+  return el&&typeof el.closest==='function'?el.closest('a'):null;
+}
+function configureAnchor(a){
+  var href=a.getAttribute('href');
+  if(!href||href.trim().toLowerCase().indexOf('javascript:')===0||a.hasAttribute('download'))return;
+  if(getInPageHash(a,href)!==null)return;
+  var t=a.getAttribute('target');
+  if(!t||t.toLowerCase()!=='_blank'){a.setAttribute('target','_blank');}
+  if(!a.getAttribute('rel')){a.setAttribute('rel','noopener noreferrer');}
+}
+function configureAllAnchors(){
+  var anchors=document.querySelectorAll('a[href]');
+  for(var i=0;i<anchors.length;i++){configureAnchor(anchors[i]);}
+}
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded',configureAllAnchors,{once:true});
+}else{
+  configureAllAnchors();
+}
+document.addEventListener('click',function(event){
+  var a=findAnchor(event.target);
+  if(a)configureAnchor(a);
+},{capture:true});
+document.addEventListener('click',function(event){
+  if(event.defaultPrevented)return;
+  var a=findAnchor(event.target);
+  if(!a)return;
+  var href=a.getAttribute('href');
+  if(!href||href.trim().toLowerCase().indexOf('javascript:')===0||a.hasAttribute('download'))return;
+  var hash=getInPageHash(a,href);
+  if(hash===null)return;
+  event.preventDefault();
+  if(hash==='#'){window.scrollTo({top:0,behavior:'smooth'});return;}
+  var targetEl=findHashTarget(hash);
+  if(targetEl){targetEl.scrollIntoView({behavior:'smooth',block:'start'});}
+});
+})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kinda for girls | متجر ملابس البنات</title>
+  <!-- استيراد مكتبة Tailwind CSS للتصميم المتجاوب والعصري -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- استيراد خط Tajawal العربي الأنيق -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Tajawal', 'sans-serif'],
+          },
+          colors: {
+            pastel: {
+              light: '#fff5f8',
+              soft: '#f8bbd0',
+              primary: '#f48fb1',
+              dark: '#ec407a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #fff5f8;
+      font-family: 'Tajawal', sans-serif;
+    }
+    /* تخصيص شريط التمرير ليتناسب مع ألوان المتجر */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #fff5f8;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #f8bbd0;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #f48fb1;
+    }
+  </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Tajawal, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.bottom-0{bottom:0px}.bottom-5{bottom:1.25rem}.left-5{left:1.25rem}.right-5{right:1.25rem}.top-0{top:0px}.right-3{right:0.75rem}.top-3{top:0.75rem}.z-10{z-index:10}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.my-8{margin-top:2rem;margin-bottom:2rem}.mb-1{margin-bottom:0.25rem}.mb-1\.5{margin-bottom:0.375rem}.mb-12{margin-bottom:3rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mt-1{margin-top:0.25rem}.mt-12{margin-top:3rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.aspect-square{aspect-ratio:1 / 1}.h-14{height:3.5rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-6{height:1.5rem}.h-7{height:1.75rem}.h-8{height:2rem}.h-full{height:100%}.max-h-40{max-height:10rem}.max-h-48{max-height:12rem}.max-h-\[90vh\]{max-height:90vh}.min-h-screen{min-height:100vh}.w-14{width:3.5rem}.w-2\.5{width:0.625rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-6{width:1.5rem}.w-7{width:1.75rem}.w-full{width:100%}.w-8{width:2rem}.max-w-2xl{max-width:42rem}.max-w-6xl{max-width:72rem}.max-w-md{max-width:28rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.flex-grow{flex-grow:1}.translate-y-24{--tw-translate-y:6rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-2\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.625rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.625rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-3\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.875rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.875rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.whitespace-pre-line{white-space:pre-line}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-dashed{border-style:dashed}.border-gray-100{--tw-border-opacity:1;border-color:rgb(243 244 246 / var(--tw-border-opacity, 1))}.border-pastel-soft{--tw-border-opacity:1;border-color:rgb(248 187 208 / var(--tw-border-opacity, 1))}.border-pink-100{--tw-border-opacity:1;border-color:rgb(252 231 243 / var(--tw-border-opacity, 1))}.border-pink-200{--tw-border-opacity:1;border-color:rgb(251 207 232 / var(--tw-border-opacity, 1))}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-pastel-dark{--tw-border-opacity:1;border-color:rgb(236 64 122 / var(--tw-border-opacity, 1))}.bg-\[\#25D366\]{--tw-bg-opacity:1;background-color:rgb(37 211 102 / var(--tw-bg-opacity, 1))}.bg-black\/50{background-color:rgb(0 0 0 / 0.5)}.bg-gray-100{--tw-bg-opacity:1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.bg-gray-50{--tw-bg-opacity:1;background-color:rgb(249 250 251 / var(--tw-bg-opacity, 1))}.bg-gray-800{--tw-bg-opacity:1;background-color:rgb(31 41 55 / var(--tw-bg-opacity, 1))}.bg-green-100{--tw-bg-opacity:1;background-color:rgb(220 252 231 / var(--tw-bg-opacity, 1))}.bg-pastel-dark{--tw-bg-opacity:1;background-color:rgb(236 64 122 / var(--tw-bg-opacity, 1))}.bg-pastel-light{--tw-bg-opacity:1;background-color:rgb(255 245 248 / var(--tw-bg-opacity, 1))}.bg-pastel-primary{--tw-bg-opacity:1;background-color:rgb(244 143 177 / var(--tw-bg-opacity, 1))}.bg-pink-100{--tw-bg-opacity:1;background-color:rgb(252 231 243 / var(--tw-bg-opacity, 1))}.bg-pink-50{--tw-bg-opacity:1;background-color:rgb(253 242 248 / var(--tw-bg-opacity, 1))}.bg-pink-50\/40{background-color:rgb(253 242 248 / 0.4)}.bg-pink-50\/50{background-color:rgb(253 242 248 / 0.5)}.bg-pink-50\/70{background-color:rgb(253 242 248 / 0.7)}.bg-red-50{--tw-bg-opacity:1;background-color:rgb(254 242 242 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/20{background-color:rgb(255 255 255 / 0.2)}.bg-white\/90{background-color:rgb(255 255 255 / 0.9)}.bg-gradient-to-l{background-image:linear-gradient(to left, var(--tw-gradient-stops))}.from-pastel-soft{--tw-gradient-from:#f8bbd0 var(--tw-gradient-from-position);--tw-gradient-to:rgb(248 187 208 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-pastel-primary{--tw-gradient-to:rgb(244 143 177 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #f48fb1 var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-pastel-dark{--tw-gradient-to:#ec407a var(--tw-gradient-to-position)}.fill-current{fill:currentColor}.object-cover{object-fit:cover}.p-1{padding:0.25rem}.p-2\.5{padding:0.625rem}.p-3{padding:0.75rem}.p-3\.5{padding:0.875rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-3\.5{padding-left:0.875rem;padding-right:0.875rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-3\.5{padding-top:0.875rem;padding-bottom:0.875rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pb-2{padding-bottom:0.5rem}.pb-3{padding-bottom:0.75rem}.pb-4{padding-bottom:1rem}.pr-1{padding-right:0.25rem}.pt-1{padding-top:0.25rem}.pt-3{padding-top:0.75rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-wide{letter-spacing:0.025em}.text-\[\#25D366\]{--tw-text-opacity:1;color:rgb(37 211 102 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-pastel-dark{--tw-text-opacity:1;color:rgb(236 64 122 / var(--tw-text-opacity, 1))}.text-pink-50{--tw-text-opacity:1;color:rgb(253 242 248 / var(--tw-text-opacity, 1))}.text-red-500{--tw-text-opacity:1;color:rgb(239 68 68 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.opacity-0{opacity:0}.opacity-95{opacity:0.95}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:bg-\[\#1ebe5d\]:hover{--tw-bg-opacity:1;background-color:rgb(30 190 93 / var(--tw-bg-opacity, 1))}.hover\:bg-gray-200:hover{--tw-bg-opacity:1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.hover\:bg-gray-900:hover{--tw-bg-opacity:1;background-color:rgb(17 24 39 / var(--tw-bg-opacity, 1))}.hover\:bg-pastel-dark:hover{--tw-bg-opacity:1;background-color:rgb(236 64 122 / var(--tw-bg-opacity, 1))}.hover\:bg-pink-200:hover{--tw-bg-opacity:1;background-color:rgb(251 207 232 / var(--tw-bg-opacity, 1))}.hover\:bg-pink-50:hover{--tw-bg-opacity:1;background-color:rgb(253 242 248 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/30:hover{background-color:rgb(255 255 255 / 0.3)}.hover\:bg-pink-100:hover{--tw-bg-opacity:1;background-color:rgb(252 231 243 / var(--tw-bg-opacity, 1))}.hover\:bg-red-100:hover{--tw-bg-opacity:1;background-color:rgb(254 226 226 / var(--tw-bg-opacity, 1))}.hover\:text-gray-600:hover{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.hover\:text-red-700:hover{--tw-text-opacity:1;color:rgb(185 28 28 / var(--tw-text-opacity, 1))}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}.hover\:shadow-md:hover{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.focus\:border-pastel-dark:focus{--tw-border-opacity:1;border-color:rgb(236 64 122 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@media (min-width: 640px){.sm\:left-auto{left:auto}.sm\:col-span-2{grid-column:span 2 / span 2}.sm\:inline{display:inline}.sm\:w-96{width:24rem}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:gap-3{gap:0.75rem}.sm\:p-8{padding:2rem}.sm\:text-2xl{font-size:1.5rem;line-height:2rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-base{font-size:1rem;line-height:1.5rem}.sm\:text-lg{font-size:1.125rem;line-height:1.75rem}.sm\:text-sm{font-size:0.875rem;line-height:1.25rem}}@media (min-width: 768px){.md\:inline{display:inline}}@media (min-width: 1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}}</style></head>
+<body class="text-gray-700 antialiased min-h-screen flex flex-col">
+
+  <!-- الشريط العلوي للمتجر -->
+  <header class="bg-gradient-to-l from-pastel-soft via-pastel-primary to-pastel-dark text-white shadow-md sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <!-- الشعار واسم المتجر -->
+      <div class="flex items-center gap-3">
+        <div class="bg-white/20 p-2.5 rounded-2xl backdrop-blur-sm">
+          <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-wide leading-tight">Kinda for girls</h1>
+          <p class="text-xs sm:text-sm text-pink-50 opacity-95">أجمل تشكيلة ملابس وإكسسوارات للبنات ✨</p>
+        </div>
+      </div>
+
+      <!-- أزرار السلة وإعدادات المالك -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- زر الانتقال للسلة -->
+        <button onclick="scrollToCart()" class="relative bg-white text-pastel-dark hover:bg-pink-50 transition px-3.5 py-2.5 rounded-2xl font-bold text-sm flex items-center gap-2 shadow-sm">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+          <span class="hidden sm:inline">السلة</span>
+          <span id="header-cart-count" class="bg-pastel-dark text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">0</span>
+        </button>
+
+        <!-- زر إعدادات المتجر للمالك -->
+        <button onclick="openSettingsModal()" title="إعدادات المتجر ونسخ الكود" class="bg-white/20 hover:bg-white/30 text-white transition p-2.5 rounded-2xl backdrop-blur-sm flex items-center gap-1.5 text-sm font-medium">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+          <span class="hidden md:inline">إعدادات المالك</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- بانر ترحيبي لطيف -->
+  <section class="max-w-6xl mx-auto px-4 pt-6 pb-2 w-full">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-pink-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <span class="inline-block bg-pink-100 text-pastel-dark text-xs font-bold px-3 py-1 rounded-full mb-2">تشكيلة الموسم الجديدة 🌸</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-800">أهلاً بكِ في عالم الأناقة والنعومة</h2>
+        <p class="text-sm sm:text-base text-gray-500 mt-1">اختاري القطع المفضلة وحددي المقاس المناسب، ثم أرسلي طلبك مباشرة عبر الواتساب بكل سهولة.</p>
+      </div>
+      <div class="shrink-0">
+        <a href="#products-section" class="inline-block bg-pastel-primary hover:bg-pastel-dark text-white font-bold px-6 py-3 rounded-2xl transition shadow-sm">
+          تصفحي المنتجات
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- المحتوى الرئيسي -->
+  <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full">
+    
+    <!-- قسم المنتجات -->
+    <div id="products-section" class="mb-12">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl sm:text-2xl font-extrabold text-gray-800 flex items-center gap-2">
+          <span class="w-2.5 h-7 bg-pastel-dark rounded-full inline-block"></span>
+          المنتجات المتوفرة
+        </h2>
+        <span class="text-xs sm:text-sm text-gray-500 bg-white px-3 py-1 rounded-full border border-pink-100">توصيل لجميع المناطق 🚚</span>
+      </div>
+
+      <!-- شبكة عرض المنتجات -->
+      <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-md transition border border-pink-100 flex flex-col justify-between">
+            <div>
+              <div class="relative overflow-hidden rounded-2xl mb-3 bg-pink-50 aspect-square">
+                <img src="https://placehold.co/400x400/f8bbd0/ffffff?text=Kinda+Pink+Dress" alt="فستان وردي ناعم بقصة كلوش" onerror="this.src='https://placehold.co/400x400/f8bbd0/ffffff?text=Kinda+for+girls'" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-pastel-dark text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                  فساتين
+                </span>
+              </div>
+              <h3 class="font-bold text-gray-800 text-lg mb-1">فستان وردي ناعم بقصة كلوش</h3>
+              <div class="text-pastel-dark font-extrabold text-xl mb-3">95 ₪</div>
+              
+              <!-- اختيار المقاس -->
+              <div class="mb-4">
+                <span class="block text-xs text-gray-400 mb-1.5 font-medium">اختاري المقاس:</span>
+                <div class="flex flex-wrap gap-1.5">
+                  <button type="button" onclick="selectSize(1, 'S')" class="px-2.5 py-1 text-xs rounded-lg border transition bg-pastel-dark text-white border-pastel-dark font-bold">S</button><button type="button" onclick="selectSize(1, 'M')" class="px-2.5 py-1 text-xs rounded-lg border transition bg-pink-50 text-gray-600 border-pink-200 hover:bg-pink-100">M</button><button type="button" onclick="selectSize(1, 'L')" class="px-2.5 py-1 text-xs rounded-lg border transition bg-pink-50 text-gray-600 border-pink-200 hover:bg-pink-100">L</button><button type="button" onclick="selectSize(1, 'XL')" class="px-2.5 py-1 text-xs rounded-lg border transition bg-pink-50 text-gray-600 border-pink-200 hover:bg-pink-100">XL</button>
+                </div>
+              </div>
+            </div>
+
+            <button onclick="addToCart(1)" class="w-full bg-pastel-primary hover:bg-pastel-dark text-white font-bold py-3 px-4 rounded-2xl transition flex items-center justify-center gap-2 shadow-sm active:scale-95">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+              </svg>
+              أضيفي إلى السلة
+            </button>
+          </div>
+        
+          <div class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-md transition border border-pink-100 flex flex-col justify-between">
+            <div>
+              <div class="relative overflow-hidden rounded-2xl mb-3 bg-pink-50 aspect-square">
+                <img src="https://placehold.co/400x400/f48fb1/ffffff?text=Summer+Set" alt="طقم بناتي صيفي قطعتين" onerror="this.src='https://placehold.co/400x400/f8bbd0/ffffff?text=Kinda+for+girls'" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-pastel-dark text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                  أطقم
+                </span>
+              </div>
+              <h3 class="font-bold text-gray-800 text-lg mb-1">طقم بناتي صيفي قطعتين</h3>
+              <div class="text-pastel-dark font-extrabold text-xl mb-3">80 ₪</div>
+              
+              <!-- اختيار المقاس -->
+              <div class="mb-4">
+                <span class="block text-xs text-gray-400 mb-1.5 font-medium">اختاري المقاس:</span>
+                <div class="flex flex-wrap gap-1.5">
+                  <button type="button" onclick="selectSize(2, 'S')" class="px-2.5 py-1 text-xs rounded-lg border transition bg-pastel-dark text-white border-pastel-dark font-bold">S</button><button type="button" onclick="selectSize(2, 'M')" class="px-2.5 py-1 text-xs rounded-lg border transition bg-pink-50 text-gray-600 border-pink-200 hover:bg-pink-100">M</button><button type="button" onclick="selectSize(2, 'L')" class="px-2.5 py-1 text-xs rounded-lg border transition bg-pink-50 text-gray-600 border-pink-200 hover:bg-pink-100">L</button>
+                </div>
+              </div>
+            </div>
+
+            <button onclick="addToCart(2)" class="w-full bg-pastel-primary hover:bg-pastel-dark text-white font-bold py-3 px-4 rounded-2xl transition flex items-center justify-center gap-2 shadow-sm active:scale-95">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+              </svg>
+              أضيفي إلى السلة
+            </button>
+          </div>
+        
+          <div class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-md transition border border-pink-100 flex flex-col justify-between">
+            <div>
+              <div class="relative overflow-hidden rounded-2xl mb-3 bg-pink-50 aspect-square">
+                <img src="https://placehold.co/400x400/fce4ec/ec407a?text=Ruffle+Blouse" alt="بلوزة كشكش أنيقة بأكمام منفوخة" onerror="this.src='https://placehold.co/400x400/f8bbd0/ffffff?text=Kinda+for+girls'" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-pastel-dark text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                  بلايز
+                </span>
+              </div>
+              <h3 class="font-bold text-gray-800 text-lg mb-1">بلوزة كشكش أنيقة بأكمام منفوخة</h3>
+              <div class="text-pastel-dark font-extrabold text-xl mb-3">60 ₪</div>
+              
+              <!-- اختيار المقاس -->
+              <div class="mb-4">
+                <span class="block text-xs text-gray-400 mb-1.5 font-medium">اختاري المقاس:</span>
+                <div class="flex flex-wrap gap-1.5">
+                  <button type="button" onclick="selectSize(3, 'S')" class="px-2.5 py-1 text-xs rounded-lg border transition bg-pastel-dark text-white border-pastel-dark font-bold">S</button><button type="button" onclick="selectSize(3, 'M')" class="px-2.5 py-1 text-xs rounded-lg border transition bg-pink-50 text-gray-600 border-pink-200 hover:bg-pink-100">M</button><button type="button" onclick="selectSize(3, 'L')" class="px-2.5 py-1 text-xs rounded-lg border transition bg-pink-50 text-gray-600 border-pink-200 hover:bg-pink-100">L</button><button type="button" onclick="selectSize(3, 'XL')" class="px-2.5 py-1 text-xs rounded-lg border transition bg-pink-50 text-gray-600 border-pink-200 hover:bg-pink-100">XL</button>
+                </div>
+              </div>
+            </div>
+
+            <button onclick="addToCart(3)" class="w-full bg-pastel-primary hover:bg-pastel-dark text-white font-bold py-3 px-4 rounded-2xl transition flex items-center justify-center gap-2 shadow-sm active:scale-95">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+              </svg>
+              أضيفي إلى السلة
+            </button>
+          </div>
+        
+          <div class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-md transition border border-pink-100 flex flex-col justify-between">
+            <div>
+              <div class="relative overflow-hidden rounded-2xl mb-3 bg-pink-50 aspect-square">
+                <img src="https://placehold.co/400x400/f8bbd0/ffffff?text=Pastel+Skirt" alt="تنورة بليسيه باستيل ناعمة" onerror="this.src='https://placehold.co/400x400/f8bbd0/ffffff?text=Kinda+for+girls'" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-pastel-dark text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                  تنانير
+                </span>
+              </div>
+              <h3 class="font-bold text-gray-800 text-lg mb-1">تنورة بليسيه باستيل ناعمة</h3>
+              <div class="text-pastel-dark font-extrabold text-xl mb-3">70 ₪</div>
+              
+              <!-- اختيار المقاس -->
+              <div class="mb-4">
+                <span class="block text-xs text-gray-400 mb-1.5 font-medium">اختاري المقاس:</span>
+                <div class="flex flex-wrap gap-1.5">
+                  <button type="button" onclick="selectSize(4, 'S')" class="px-2.5 py-1 text-xs rounded-lg border transition bg-pastel-dark text-white border-pastel-dark font-bold">S</button><button type="button" onclick="selectSize(4, 'M')" class="px-2.5 py-1 text-xs rounded-lg border transition bg-pink-50 text-gray-600 border-pink-200 hover:bg-pink-100">M</button><button type="button" onclick="selectSize(4, 'L')" class="px-2.5 py-1 text-xs rounded-lg border transition bg-pink-50 text-gray-600 border-pink-200 hover:bg-pink-100">L</button>
+                </div>
+              </div>
+            </div>
+
+            <button onclick="addToCart(4)" class="w-full bg-pastel-primary hover:bg-pastel-dark text-white font-bold py-3 px-4 rounded-2xl transition flex items-center justify-center gap-2 shadow-sm active:scale-95">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+              </svg>
+              أضيفي إلى السلة
+            </button>
+          </div>
+        
+          <div class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-md transition border border-pink-100 flex flex-col justify-between">
+            <div>
+              <div class="relative overflow-hidden rounded-2xl mb-3 bg-pink-50 aspect-square">
+                <img src="https://placehold.co/400x400/f48fb1/ffffff?text=Mini+Bag" alt="حقيبة كتف صغيرة باللون الوردي" onerror="this.src='https://placehold.co/400x400/f8bbd0/ffffff?text=Kinda+for+girls'" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-pastel-dark text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                  حقائب
+                </span>
+              </div>
+              <h3 class="font-bold text-gray-800 text-lg mb-1">حقيبة كتف صغيرة باللون الوردي</h3>
+              <div class="text-pastel-dark font-extrabold text-xl mb-3">50 ₪</div>
+              
+              <!-- اختيار المقاس -->
+              <div class="mb-4">
+                <span class="block text-xs text-gray-400 mb-1.5 font-medium">اختاري المقاس:</span>
+                <div class="flex flex-wrap gap-1.5">
+                  <button type="button" onclick="selectSize(5, 'مقاس واحد')" class="px-2.5 py-1 text-xs rounded-lg border transition bg-pastel-dark text-white border-pastel-dark font-bold">مقاس واحد</button>
+                </div>
+              </div>
+            </div>
+
+            <button onclick="addToCart(5)" class="w-full bg-pastel-primary hover:bg-pastel-dark text-white font-bold py-3 px-4 rounded-2xl transition flex items-center justify-center gap-2 shadow-sm active:scale-95">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+              </svg>
+              أضيفي إلى السلة
+            </button>
+          </div>
+        
+          <div class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-md transition border border-pink-100 flex flex-col justify-between">
+            <div>
+              <div class="relative overflow-hidden rounded-2xl mb-3 bg-pink-50 aspect-square">
+                <img src="https://placehold.co/400x400/fce4ec/ec407a?text=Hair+Accessories" alt="طقم مشابك وإكسسوارات شعر لؤلؤ" onerror="this.src='https://placehold.co/400x400/f8bbd0/ffffff?text=Kinda+for+girls'" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-pastel-dark text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                  إكسسوارات
+                </span>
+              </div>
+              <h3 class="font-bold text-gray-800 text-lg mb-1">طقم مشابك وإكسسوارات شعر لؤلؤ</h3>
+              <div class="text-pastel-dark font-extrabold text-xl mb-3">25 ₪</div>
+              
+              <!-- اختيار المقاس -->
+              <div class="mb-4">
+                <span class="block text-xs text-gray-400 mb-1.5 font-medium">اختاري المقاس:</span>
+                <div class="flex flex-wrap gap-1.5">
+                  <button type="button" onclick="selectSize(6, 'مقاس واحد')" class="px-2.5 py-1 text-xs rounded-lg border transition bg-pastel-dark text-white border-pastel-dark font-bold">مقاس واحد</button>
+                </div>
+              </div>
+            </div>
+
+            <button onclick="addToCart(6)" class="w-full bg-pastel-primary hover:bg-pastel-dark text-white font-bold py-3 px-4 rounded-2xl transition flex items-center justify-center gap-2 shadow-sm active:scale-95">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+              </svg>
+              أضيفي إلى السلة
+            </button>
+          </div>
+        </div>
+    </div>
+
+    <!-- قسم سلة المشتريات وإتمام الطلب -->
+    <div id="cart-section" class="bg-white rounded-3xl p-6 sm:p-8 shadow-md border-2 border-pastel-soft">
+      <div class="flex items-center justify-between border-b border-pink-100 pb-4 mb-6">
+        <h2 class="text-xl sm:text-2xl font-extrabold text-pastel-dark flex items-center gap-2">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+          </svg>
+          سلة المشتريات وإتمام الطلب
+        </h2>
+        <button onclick="clearCart()" id="clear-cart-btn" class="hidden text-xs text-red-500 hover:text-red-700 font-bold bg-red-50 px-3 py-1.5 rounded-xl transition">
+          إفراغ السلة
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- قائمة العناصر في السلة -->
+        <div class="lg:col-span-7 flex flex-col justify-between">
+          <div>
+            <ul id="cart-items-list" class="space-y-3 mb-4">
+          <li class="text-center py-8 bg-pink-50/40 rounded-2xl border border-dashed border-pink-200 text-gray-400">
+            <p class="text-base font-medium">سلة المشتريات فارغة حالياً 🛍️</p>
+            <p class="text-xs mt-1">اختاري منتجاتك المفضلة من الأعلى لإضافتها هنا</p>
+          </li>
+        </ul>
+          </div>
+
+          <div class="bg-pastel-light p-4 rounded-2xl border border-pink-100 flex items-center justify-between mt-4">
+            <span class="font-bold text-gray-700 text-base sm:text-lg">المجموع الإجمالي:</span>
+            <span id="cart-total-price" class="font-extrabold text-2xl text-pastel-dark">0 ₪</span>
+          </div>
+        </div>
+
+        <!-- نموذج بيانات الزبونة -->
+        <div class="lg:col-span-5 bg-pink-50/50 p-5 rounded-2xl border border-pink-100">
+          <h3 class="font-bold text-gray-800 mb-4 text-base">معلومات التوصيل:</h3>
+          <div class="space-y-3.5">
+            <div>
+              <label class="block text-xs font-bold text-gray-600 mb-1">الاسم الكامل *</label>
+              <input type="text" id="customer-name" placeholder="مثال: سارة أحمد" class="w-full px-4 py-2.5 rounded-xl border border-pink-200 focus:outline-none focus:border-pastel-dark bg-white text-sm">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-600 mb-1">رقم الهاتف للتواصل *</label>
+              <input type="tel" id="customer-phone" placeholder="مثال: 0599123456" class="w-full px-4 py-2.5 rounded-xl border border-pink-200 focus:outline-none focus:border-pastel-dark bg-white text-sm text-right" dir="ltr">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-600 mb-1">المدينة والعنوان بالتفصيل *</label>
+              <textarea id="customer-address" rows="2" placeholder="المدينة، الحي، اسم الشارع أو أقرب معلم" class="w-full px-4 py-2.5 rounded-xl border border-pink-200 focus:outline-none focus:border-pastel-dark bg-white text-sm"></textarea>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-600 mb-1">ملاحظات إضافية (اختياري)</label>
+              <input type="text" id="customer-notes" placeholder="أي ملاحظة حول الطلب أو وقت التوصيل" class="w-full px-4 py-2.5 rounded-xl border border-pink-200 focus:outline-none focus:border-pastel-dark bg-white text-sm">
+            </div>
+
+            <button onclick="sendOrderViaWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold py-3.5 px-4 rounded-2xl shadow-md transition flex items-center justify-center gap-2 text-base mt-2">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"></path>
+              </svg>
+              إرسال الطلب عبر واتساب
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- تذييل الصفحة -->
+  <footer class="bg-white border-t border-pink-100 py-6 mt-12">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+      <p>جميع الحقوق محفوظة © 2026 متجر <span class="font-bold text-pastel-dark">Kinda for girls</span></p>
+      <button onclick="openSettingsModal()" class="text-pastel-dark hover:underline font-medium flex items-center gap-1">
+        <span>إعدادات رقم الواتساب ونسخ كود المتجر</span>
+      </button>
+    </div>
+  </footer>
+
+  <!-- نافذة الإشعارات المخصصة (بديل alert) -->
+  <div id="toast-notification" class="fixed bottom-5 right-5 left-5 sm:left-auto sm:w-96 bg-gray-800 text-white px-5 py-3.5 rounded-2xl shadow-xl transform translate-y-24 opacity-0 transition-all duration-300 z-50 flex items-center gap-3">
+    <span id="toast-icon" class="text-xl">✨</span>
+    <p id="toast-message" class="text-sm font-medium"></p>
+  </div>
+
+  <!-- نافذة إعدادات المالك ونسخ الكود لرفعه على GitHub -->
+  <div id="settings-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm items-center justify-center p-4 z-50 overflow-y-auto flex">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 shadow-2xl border border-pink-100 my-8 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-pink-100 pb-3 mb-4 sticky top-0 bg-white z-10">
+        <h3 class="text-lg font-extrabold text-gray-800 flex items-center gap-2">
+          <span>⚙️ لوحة تحكم صاحب المتجر</span>
+        </h3>
+        <button onclick="closeSettingsModal()" class="text-gray-400 hover:text-gray-600 p-1 rounded-lg">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="space-y-6">
+        <!-- تنبيه الأمان -->
+        <div class="bg-pink-50 p-3.5 rounded-2xl text-xs text-gray-700 leading-relaxed border border-pink-100">
+          <strong>🔒 حماية المتجر:</strong> أي تعديل تجريه هنا يُحفظ مؤقتاً في متصفحك فقط. لن يرى الزبائن المنتجات الجديدة إلا بعد أن تضغط على زر <strong>"نسخ الكود الكامل لـ GitHub"</strong> بالأسفل وتلصقه في حسابك على GitHub (الذي لا يملك أحد صلاحية التعديل عليه غيرك).
+        </div>
+
+        <!-- القسم الأول: رقم الواتساب -->
+        <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100">
+          <label class="block text-sm font-bold text-gray-800 mb-1.5">1. رقم واتساب المتجر (مع مقدمة الدولة):</label>
+          <input type="text" id="owner-whatsapp-input" placeholder="مثال: 972599000000" dir="ltr" class="w-full px-4 py-2.5 rounded-xl border border-pink-200 focus:outline-none focus:border-pastel-dark text-left font-mono text-sm bg-white">
+        </div>
+
+        <!-- القسم الثاني: إضافة منتج جديد -->
+        <div class="bg-pink-50/40 p-4 rounded-2xl border border-pink-100">
+          <h4 class="text-sm font-extrabold text-pastel-dark mb-3">2. إضافة منتج جديد للمتجر ➕</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-bold text-gray-600 mb-1">اسم المنتج *</label>
+              <input type="text" id="new-prod-name" placeholder="مثال: فستان سهرة وردي" class="w-full px-3 py-2 rounded-xl border border-pink-200 text-sm bg-white focus:outline-none focus:border-pastel-dark">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-600 mb-1">السعر (بالشيكل) *</label>
+              <input type="number" id="new-prod-price" placeholder="مثال: 110" class="w-full px-3 py-2 rounded-xl border border-pink-200 text-sm bg-white focus:outline-none focus:border-pastel-dark">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-600 mb-1">القسم / التصنيف</label>
+              <input type="text" id="new-prod-category" placeholder="مثال: فساتين، أطقم، حقائب..." class="w-full px-3 py-2 rounded-xl border border-pink-200 text-sm bg-white focus:outline-none focus:border-pastel-dark">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-600 mb-1">المقاسات المتوفرة (افصلي بفاصلة)</label>
+              <input type="text" id="new-prod-sizes" value="S, M, L, XL" placeholder="S, M, L" dir="ltr" class="w-full px-3 py-2 rounded-xl border border-pink-200 text-sm bg-white text-left focus:outline-none focus:border-pastel-dark">
+            </div>
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-bold text-gray-600 mb-1">رابط صورة المنتج (اختياري)</label>
+              <input type="url" id="new-prod-image" placeholder="https://..." dir="ltr" class="w-full px-3 py-2 rounded-xl border border-pink-200 text-sm bg-white text-left focus:outline-none focus:border-pastel-dark">
+            </div>
+          </div>
+          <button type="button" onclick="addNewProduct()" class="mt-3 w-full bg-pastel-primary hover:bg-pastel-dark text-white font-bold py-2.5 px-4 rounded-xl transition text-sm shadow-sm">
+            + إضافة المنتج إلى القائمة
+          </button>
+        </div>
+
+        <!-- القسم الثالث: إدارة المنتجات الحالية -->
+        <div>
+          <h4 class="text-sm font-extrabold text-gray-800 mb-2">3. المنتجات الحالية في المتجر (<span id="owner-products-count">6</span>):</h4>
+          <ul id="owner-products-list" class="space-y-2 max-h-48 overflow-y-auto pr-1">
+          <li class="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-xl border border-gray-200 text-xs">
+            <div class="flex items-center gap-2">
+              <img src="https://placehold.co/400x400/f8bbd0/ffffff?text=Kinda+Pink+Dress" onerror="this.src='https://placehold.co/100x100/f8bbd0/ffffff?text=Item'" class="w-8 h-8 rounded-lg object-cover">
+              <div>
+                <span class="font-bold text-gray-800 block">فستان وردي ناعم بقصة كلوش</span>
+                <span class="text-gray-500">95 ₪ • فساتين</span>
+              </div>
+            </div>
+            <button type="button" onclick="deleteProductByOwner(0)" class="text-red-500 hover:bg-red-100 px-2.5 py-1 rounded-lg font-bold transition">
+              حذف
+            </button>
+          </li>
+        
+          <li class="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-xl border border-gray-200 text-xs">
+            <div class="flex items-center gap-2">
+              <img src="https://placehold.co/400x400/f48fb1/ffffff?text=Summer+Set" onerror="this.src='https://placehold.co/100x100/f8bbd0/ffffff?text=Item'" class="w-8 h-8 rounded-lg object-cover">
+              <div>
+                <span class="font-bold text-gray-800 block">طقم بناتي صيفي قطعتين</span>
+                <span class="text-gray-500">80 ₪ • أطقم</span>
+              </div>
+            </div>
+            <button type="button" onclick="deleteProductByOwner(1)" class="text-red-500 hover:bg-red-100 px-2.5 py-1 rounded-lg font-bold transition">
+              حذف
+            </button>
+          </li>
+        
+          <li class="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-xl border border-gray-200 text-xs">
+            <div class="flex items-center gap-2">
+              <img src="https://placehold.co/400x400/fce4ec/ec407a?text=Ruffle+Blouse" onerror="this.src='https://placehold.co/100x100/f8bbd0/ffffff?text=Item'" class="w-8 h-8 rounded-lg object-cover">
+              <div>
+                <span class="font-bold text-gray-800 block">بلوزة كشكش أنيقة بأكمام منفوخة</span>
+                <span class="text-gray-500">60 ₪ • بلايز</span>
+              </div>
+            </div>
+            <button type="button" onclick="deleteProductByOwner(2)" class="text-red-500 hover:bg-red-100 px-2.5 py-1 rounded-lg font-bold transition">
+              حذف
+            </button>
+          </li>
+        
+          <li class="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-xl border border-gray-200 text-xs">
+            <div class="flex items-center gap-2">
+              <img src="https://placehold.co/400x400/f8bbd0/ffffff?text=Pastel+Skirt" onerror="this.src='https://placehold.co/100x100/f8bbd0/ffffff?text=Item'" class="w-8 h-8 rounded-lg object-cover">
+              <div>
+                <span class="font-bold text-gray-800 block">تنورة بليسيه باستيل ناعمة</span>
+                <span class="text-gray-500">70 ₪ • تنانير</span>
+              </div>
+            </div>
+            <button type="button" onclick="deleteProductByOwner(3)" class="text-red-500 hover:bg-red-100 px-2.5 py-1 rounded-lg font-bold transition">
+              حذف
+            </button>
+          </li>
+        
+          <li class="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-xl border border-gray-200 text-xs">
+            <div class="flex items-center gap-2">
+              <img src="https://placehold.co/400x400/f48fb1/ffffff?text=Mini+Bag" onerror="this.src='https://placehold.co/100x100/f8bbd0/ffffff?text=Item'" class="w-8 h-8 rounded-lg object-cover">
+              <div>
+                <span class="font-bold text-gray-800 block">حقيبة كتف صغيرة باللون الوردي</span>
+                <span class="text-gray-500">50 ₪ • حقائب</span>
+              </div>
+            </div>
+            <button type="button" onclick="deleteProductByOwner(4)" class="text-red-500 hover:bg-red-100 px-2.5 py-1 rounded-lg font-bold transition">
+              حذف
+            </button>
+          </li>
+        
+          <li class="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-xl border border-gray-200 text-xs">
+            <div class="flex items-center gap-2">
+              <img src="https://placehold.co/400x400/fce4ec/ec407a?text=Hair+Accessories" onerror="this.src='https://placehold.co/100x100/f8bbd0/ffffff?text=Item'" class="w-8 h-8 rounded-lg object-cover">
+              <div>
+                <span class="font-bold text-gray-800 block">طقم مشابك وإكسسوارات شعر لؤلؤ</span>
+                <span class="text-gray-500">25 ₪ • إكسسوارات</span>
+              </div>
+            </div>
+            <button type="button" onclick="deleteProductByOwner(5)" class="text-red-500 hover:bg-red-100 px-2.5 py-1 rounded-lg font-bold transition">
+              حذف
+            </button>
+          </li>
+        </ul>
+        </div>
+
+        <!-- أزرار الحفظ والتصدير النهائي -->
+        <div class="pt-3 border-t border-pink-100 flex flex-col sm:flex-row gap-2.5 sticky bottom-0 bg-white">
+          <button onclick="saveOwnerSettings()" class="flex-1 bg-pink-100 hover:bg-pink-200 text-pastel-dark font-bold py-3 px-4 rounded-xl transition text-sm">
+            حفظ للمعاينة هنا فقط
+          </button>
+          <button onclick="copyFullStoreCode()" class="flex-1 bg-gray-800 hover:bg-gray-900 text-white font-bold py-3 px-4 rounded-xl transition text-sm flex items-center justify-center gap-2 shadow-md">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path>
+            </svg>
+            نسخ الكود الكامل لـ GitHub
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- نافذة تأكيد الطلب وفتح الواتساب (تعمل في المعاينة وعلى جميع المتصفحات) -->
+  <div id="order-ready-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-pink-100 text-center">
+      <div class="w-14 h-14 bg-green-100 text-[#25D366] rounded-full flex items-center justify-center mx-auto mb-3 text-3xl">
+        ✓
+      </div>
+      <h3 class="text-xl font-extrabold text-gray-800 mb-1">تم تجهيز طلبك بنجاح! 🌸</h3>
+      <p class="text-sm text-gray-500 mb-4">اضغطي على الزر الأخضر بالأسفل للانتقال مباشرة إلى محادثة الواتساب وإرسال الطلب:</p>
+      
+      <div class="bg-pink-50/70 p-3 rounded-2xl text-right text-xs text-gray-700 mb-4 max-h-40 overflow-y-auto whitespace-pre-line border border-pink-100" id="order-preview-text"></div>
+
+      <div class="space-y-2.5">
+        <a id="direct-whatsapp-link" href="#" target="_blank" rel="noopener noreferrer" class="w-full bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold py-3.5 px-4 rounded-2xl shadow-md transition flex items-center justify-center gap-2 text-base">
+          <span>فتح واتساب وإرسال الطلب الآن</span>
+        </a>
+        <button onclick="copyOrderTextFallback()" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-2.5 px-4 rounded-xl transition text-xs">
+          نسخ نص الطلب يدوياً
+        </button>
+        <button onclick="closeOrderModal()" class="w-full text-gray-400 hover:text-gray-600 text-xs pt-1">
+          إغلاق
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ==========================================
+    // إعدادات المتجر الأساسية (يمكن تعديلها)
+    // ==========================================
+    // ضع رقم الواتساب الخاص بك هنا مع مقدمة الدولة وبدون + أو أصفار
+    let STORE_WHATSAPP_NUMBER = "972590000000";
+
+    // قائمة المنتجات الافتراضية في المتجر
+    let products = [
+      {
+            "id": 1,
+            "name": "فستان وردي ناعم بقصة كلوش",
+            "price": 95,
+            "category": "فساتين",
+            "sizes": [
+                  "S",
+                  "M",
+                  "L",
+                  "XL"
+            ],
+            "image": "https://placehold.co/400x400/f8bbd0/ffffff?text=Kinda+Pink+Dress"
+      },
+      {
+            "id": 2,
+            "name": "طقم بناتي صيفي قطعتين",
+            "price": 80,
+            "category": "أطقم",
+            "sizes": [
+                  "S",
+                  "M",
+                  "L"
+            ],
+            "image": "https://placehold.co/400x400/f48fb1/ffffff?text=Summer+Set"
+      },
+      {
+            "id": 3,
+            "name": "بلوزة كشكش أنيقة بأكمام منفوخة",
+            "price": 60,
+            "category": "بلايز",
+            "sizes": [
+                  "S",
+                  "M",
+                  "L",
+                  "XL"
+            ],
+            "image": "https://placehold.co/400x400/fce4ec/ec407a?text=Ruffle+Blouse"
+      },
+      {
+            "id": 4,
+            "name": "تنورة بليسيه باستيل ناعمة",
+            "price": 70,
+            "category": "تنانير",
+            "sizes": [
+                  "S",
+                  "M",
+                  "L"
+            ],
+            "image": "https://placehold.co/400x400/f8bbd0/ffffff?text=Pastel+Skirt"
+      },
+      {
+            "id": 5,
+            "name": "حقيبة كتف صغيرة باللون الوردي",
+            "price": 50,
+            "category": "حقائب",
+            "sizes": [
+                  "مقاس واحد"
+            ],
+            "image": "https://placehold.co/400x400/f48fb1/ffffff?text=Mini+Bag"
+      },
+      {
+            "id": 6,
+            "name": "طقم مشابك وإكسسوارات شعر لؤلؤ",
+            "price": 25,
+            "category": "إكسسوارات",
+            "sizes": [
+                  "مقاس واحد"
+            ],
+            "image": "https://placehold.co/400x400/fce4ec/ec407a?text=Hair+Accessories"
+      }
+];
+
+    // سلة المشتريات
+    let cart = [];
+    // تخزين المقاس المختار لكل منتج
+    let selectedSizes = {};
+
+    // تهيئة الصفحة عند التحميل
+    window.onload = function() {
+      // استرجاع رقم الواتساب المحفوظ محلياً إن وجد
+      const savedPhone = localStorage.getItem("kinda_store_whatsapp");
+      if (savedPhone) {
+        STORE_WHATSAPP_NUMBER = savedPhone;
+      }
+      document.getElementById("owner-whatsapp-input").value = STORE_WHATSAPP_NUMBER;
+
+      // استرجاع المنتجات المحفوظة محلياً إن وجدت
+      const savedProducts = localStorage.getItem("kinda_store_products");
+      if (savedProducts) {
+        try {
+          products = JSON.parse(savedProducts);
+        } catch (e) {}
+      }
+
+      renderProducts();
+      renderCart();
+      renderOwnerProductsList();
+    };
+
+    // دالة عرض المنتجات في الشبكة
+    function renderProducts() {
+      const grid = document.getElementById("product-grid");
+      grid.innerHTML = "";
+
+      products.forEach(product => {
+        // تعيين المقاس الافتراضي كأول مقاس متاح
+        if (!selectedSizes[product.id]) {
+          selectedSizes[product.id] = product.sizes[0];
+        }
+
+        // إنشاء أزرار المقاسات
+        const sizesHtml = product.sizes.map(size => {
+          const isSelected = selectedSizes[product.id] === size;
+          const activeClass = isSelected 
+            ? "bg-pastel-dark text-white border-pastel-dark font-bold" 
+            : "bg-pink-50 text-gray-600 border-pink-200 hover:bg-pink-100";
+          return `<button type="button" onclick="selectSize(${product.id}, '${size}')" class="px-2.5 py-1 text-xs rounded-lg border transition ${activeClass}">${size}</button>`;
+        }).join("");
+
+        grid.innerHTML += `
+          <div class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-md transition border border-pink-100 flex flex-col justify-between">
+            <div>
+              <div class="relative overflow-hidden rounded-2xl mb-3 bg-pink-50 aspect-square">
+                <img src="${product.image}" alt="${product.name}" onerror="this.src='https://placehold.co/400x400/f8bbd0/ffffff?text=Kinda+for+girls'" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-pastel-dark text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                  ${product.category}
+                </span>
+              </div>
+              <h3 class="font-bold text-gray-800 text-lg mb-1">${product.name}</h3>
+              <div class="text-pastel-dark font-extrabold text-xl mb-3">${product.price} ₪</div>
+              
+              <!-- اختيار المقاس -->
+              <div class="mb-4">
+                <span class="block text-xs text-gray-400 mb-1.5 font-medium">اختاري المقاس:</span>
+                <div class="flex flex-wrap gap-1.5">
+                  ${sizesHtml}
+                </div>
+              </div>
+            </div>
+
+            <button onclick="addToCart(${product.id})" class="w-full bg-pastel-primary hover:bg-pastel-dark text-white font-bold py-3 px-4 rounded-2xl transition flex items-center justify-center gap-2 shadow-sm active:scale-95">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+              </svg>
+              أضيفي إلى السلة
+            </button>
+          </div>
+        `;
+      });
+    }
+
+    // دالة تحديد المقاس
+    function selectSize(productId, size) {
+      selectedSizes[productId] = size;
+      renderProducts();
+    }
+
+    // دالة الإضافة إلى السلة
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      const chosenSize = selectedSizes[productId] || product.sizes[0];
+
+      // البحث إذا كان نفس المنتج وبنفس المقاس موجود مسبقاً
+      const existingIndex = cart.findIndex(item => item.id === productId && item.size === chosenSize);
+      if (existingIndex > -1) {
+        cart[existingIndex].quantity += 1;
+      } else {
+        cart.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          size: chosenSize,
+          quantity: 1
+        });
+      }
+
+      renderCart();
+      showToast(`تمت إضافة "${product.name}" (مقاس ${chosenSize}) إلى السلة 🌸`, "🛍️");
+    }
+
+    // دالة تغيير الكمية أو الحذف من السلة
+    function updateQuantity(index, change) {
+      cart[index].quantity += change;
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      renderCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      renderCart();
+    }
+
+    function clearCart() {
+      cart = [];
+      renderCart();
+      showToast("تم إفراغ سلة المشتريات", "🗑️");
+    }
+
+    // دالة عرض محتويات السلة
+    function renderCart() {
+      const list = document.getElementById("cart-items-list");
+      const totalEl = document.getElementById("cart-total-price");
+      const headerCount = document.getElementById("header-cart-count");
+      const clearBtn = document.getElementById("clear-cart-btn");
+
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      headerCount.innerText = totalItems;
+
+      if (cart.length === 0) {
+        clearBtn.classList.add("hidden");
+        list.innerHTML = `
+          <li class="text-center py-8 bg-pink-50/40 rounded-2xl border border-dashed border-pink-200 text-gray-400">
+            <p class="text-base font-medium">سلة المشتريات فارغة حالياً 🛍️</p>
+            <p class="text-xs mt-1">اختاري منتجاتك المفضلة من الأعلى لإضافتها هنا</p>
+          </li>
+        `;
+        totalEl.innerText = "0 ₪";
+        return;
+      }
+
+      clearBtn.classList.remove("hidden");
+      list.innerHTML = "";
+      let totalPrice = 0;
+
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        totalPrice += itemTotal;
+
+        list.innerHTML += `
+          <li class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-pink-50/50 p-3.5 rounded-2xl border border-pink-100">
+            <div>
+              <h4 class="font-bold text-gray-800 text-sm sm:text-base">${item.name}</h4>
+              <div class="flex items-center gap-2 mt-1">
+                <span class="text-xs bg-white text-pastel-dark border border-pink-200 px-2 py-0.5 rounded-md font-bold">المقاس: ${item.size}</span>
+                <span class="text-xs text-gray-500">سعر القطعة: ${item.price} ₪</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between sm:justify-end gap-3">
+              <!-- أزرار التحكم بالكمية -->
+              <div class="flex items-center bg-white rounded-xl border border-pink-200 px-1.5 py-1">
+                <button onclick="updateQuantity(${index}, 1)" class="w-6 h-6 rounded-lg bg-pink-50 hover:bg-pink-100 text-pastel-dark font-bold flex items-center justify-center">+</button>
+                <span class="px-3 text-sm font-bold text-gray-700">${item.quantity}</span>
+                <button onclick="updateQuantity(${index}, -1)" class="w-6 h-6 rounded-lg bg-pink-50 hover:bg-pink-100 text-pastel-dark font-bold flex items-center justify-center">-</button>
+              </div>
+
+              <span class="font-extrabold text-pastel-dark text-sm sm:text-base w-16 text-left">${itemTotal} ₪</span>
+
+              <button onclick="removeFromCart(${index})" title="حذف المنتج" class="text-red-400 hover:text-red-600 p-1.5 rounded-lg hover:bg-red-50 transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                </svg>
+              </button>
+            </div>
+          </li>
+        `;
+      });
+
+      totalEl.innerText = `${totalPrice} ₪`;
+    }
+
+    // دالة إرسال الطلب عبر واتساب
+    function sendOrderViaWhatsApp() {
+      if (cart.length === 0) {
+        showToast("يرجى إضافة منتج واحد على الأقل إلى السلة أولاً!", "⚠️");
+        return;
+      }
+
+      const name = document.getElementById("customer-name").value.trim();
+      const phone = document.getElementById("customer-phone").value.trim();
+      const address = document.getElementById("customer-address").value.trim();
+      const notes = document.getElementById("customer-notes").value.trim();
+
+      if (!name || !phone || !address) {
+        showToast("يرجى تعبئة الاسم، رقم الهاتف، وعنوان التوصيل.", "⚠️");
+        return;
+      }
+
+      // تنسيق رسالة الطلب باللغة العربية
+      let message = `🌸 *طلب جديد من متجر Kinda for girls* 🌸\n\n`;
+      message += `👤 *الاسم:* ${name}\n`;
+      message += `📱 *رقم الهاتف:* ${phone}\n`;
+      message += `📍 *العنوان:* ${address}\n`;
+      if (notes) {
+        message += `📝 *ملاحظات:* ${notes}\n`;
+      }
+      message += `\n🛍️ *تفاصيل الطلب:*\n`;
+      message += `--------------------------\n`;
+
+      let total = 0;
+      cart.forEach((item, index) => {
+        const subTotal = item.price * item.quantity;
+        total += subTotal;
+        message += `${index + 1}. *${item.name}*\n`;
+        message += `   • المقاس: ${item.size} | الكمية: ${item.quantity} | السعر: ${subTotal} ₪\n`;
+      });
+
+      message += `--------------------------\n`;
+      message += `💰 *المجموع الكلي:* ${total} ₪\n\n`;
+      message += `شكراً لتسوقك من Kinda for girls 💕`;
+
+      // تنظيف رقم واتساب المتجر من أي رموز إضافية
+      const cleanNumber = STORE_WHATSAPP_NUMBER.replace(/[^0-9]/g, "");
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/${cleanNumber}?text=${encodedMessage}`;
+
+      // تجهيز نافذة التأكيد مع الرابط المباشر لضمان العمل داخل المعاينة وعلى كافة المتصفحات
+      document.getElementById("order-preview-text").innerText = message;
+      const directLink = document.getElementById("direct-whatsapp-link");
+      directLink.href = whatsappUrl;
+      
+      const modal = document.getElementById("order-ready-modal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+
+      // محاولة الفتح التلقائي في نافذة جديدة
+      try {
+        window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      } catch (e) {
+        // في حال منع المتصفح أو المعاينة للفتح التلقائي، سيعمل الرابط المباشر داخل النافذة
+      }
+    }
+
+    function closeOrderModal() {
+      const modal = document.getElementById("order-ready-modal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
+    function copyOrderTextFallback() {
+      const text = document.getElementById("order-preview-text").innerText;
+      const temp = document.createElement("textarea");
+      temp.value = text;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand("copy");
+      document.body.removeChild(temp);
+      showToast("تم نسخ تفاصيل الطلب بنجاح! 📋", "✅");
+    }
+
+    // التمرير السلس إلى السلة
+    function scrollToCart() {
+      document.getElementById("cart-section").scrollIntoView({ behavior: "smooth" });
+    }
+
+    // عرض الإشعارات المنبثقة
+    let toastTimeout;
+    function showToast(msg, icon = "✨") {
+      const toast = document.getElementById("toast-notification");
+      document.getElementById("toast-message").innerText = msg;
+      document.getElementById("toast-icon").innerText = icon;
+
+      toast.classList.remove("translate-y-24", "opacity-0");
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add("translate-y-24", "opacity-0");
+      }, 3500);
+    }
+
+    // ==========================================
+    // دوال نافذة إعدادات المالك وتصدير الكود
+    // ==========================================
+    function openSettingsModal() {
+      renderOwnerProductsList();
+      const modal = document.getElementById("settings-modal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+
+    function closeSettingsModal() {
+      const modal = document.getElementById("settings-modal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
+    // عرض قائمة المنتجات داخل لوحة تحكم المالك
+    function renderOwnerProductsList() {
+      const list = document.getElementById("owner-products-list");
+      const countEl = document.getElementById("owner-products-count");
+      countEl.innerText = products.length;
+      list.innerHTML = "";
+
+      products.forEach((prod, idx) => {
+        list.innerHTML += `
+          <li class="flex items-center justify-between bg-gray-50 px-3 py-2 rounded-xl border border-gray-200 text-xs">
+            <div class="flex items-center gap-2">
+              <img src="${prod.image}" onerror="this.src='https://placehold.co/100x100/f8bbd0/ffffff?text=Item'" class="w-8 h-8 rounded-lg object-cover">
+              <div>
+                <span class="font-bold text-gray-800 block">${prod.name}</span>
+                <span class="text-gray-500">${prod.price} ₪ • ${prod.category}</span>
+              </div>
+            </div>
+            <button type="button" onclick="deleteProductByOwner(${idx})" class="text-red-500 hover:bg-red-100 px-2.5 py-1 rounded-lg font-bold transition">
+              حذف
+            </button>
+          </li>
+        `;
+      });
+    }
+
+    // إضافة منتج جديد من لوحة المالك
+    function addNewProduct() {
+      const name = document.getElementById("new-prod-name").value.trim();
+      const price = parseFloat(document.getElementById("new-prod-price").value);
+      const category = document.getElementById("new-prod-category").value.trim() || "تشكيلة جديدة";
+      const sizesRaw = document.getElementById("new-prod-sizes").value.trim();
+      const image = document.getElementById("new-prod-image").value.trim() || `https://placehold.co/400x400/f8bbd0/ffffff?text=${encodeURIComponent(name)}`;
+
+      if (!name || isNaN(price) || price <= 0) {
+        showToast("يرجى إدخال اسم المنتج والسعر بشكل صحيح!", "⚠️");
+        return;
+      }
+
+      const sizesArray = sizesRaw ? sizesRaw.split(",").map(s => s.trim()).filter(Boolean) : ["مقاس واحد"];
+
+      const newProduct = {
+        id: Date.now(),
+        name: name,
+        price: price,
+        category: category,
+        sizes: sizesArray,
+        image: image
+      };
+
+      products.unshift(newProduct);
+      localStorage.setItem("kinda_store_products", JSON.stringify(products));
+
+      // تفريغ الحقول
+      document.getElementById("new-prod-name").value = "";
+      document.getElementById("new-prod-price").value = "";
+      document.getElementById("new-prod-category").value = "";
+      document.getElementById("new-prod-image").value = "";
+
+      renderProducts();
+      renderOwnerProductsList();
+      showToast(`تمت إضافة "${name}" بنجاح! ✨`, "✅");
+    }
+
+    // حذف منتج من لوحة المالك
+    function deleteProductByOwner(index) {
+      products.splice(index, 1);
+      localStorage.setItem("kinda_store_products", JSON.stringify(products));
+      renderProducts();
+      renderOwnerProductsList();
+      showToast("تم حذف المنتج من القائمة", "🗑️");
+    }
+
+    function saveOwnerSettings() {
+      const inputVal = document.getElementById("owner-whatsapp-input").value.trim().replace(/[^0-9]/g, "");
+      if (!inputVal || inputVal.length < 9) {
+        showToast("يرجى إدخال رقم واتساب صحيح مع مقدمة الدولة!", "⚠️");
+        return;
+      }
+      STORE_WHATSAPP_NUMBER = inputVal;
+      localStorage.setItem("kinda_store_whatsapp", inputVal);
+      showToast("تم حفظ الإعدادات للمعاينة بنجاح!", "✅");
+      closeSettingsModal();
+    }
+
+    // نسخ الكود المصدري الكامل مع رقم الواتساب والمنتجات الجديدة لرفعه مباشرة على GitHub
+    function copyFullStoreCode() {
+      const inputVal = document.getElementById("owner-whatsapp-input").value.trim().replace(/[^0-9]/g, "");
+      if (!inputVal || inputVal.length < 9) {
+        showToast("يرجى إدخال رقم واتساب صحيح أولاً قبل نسخ الكود!", "⚠️");
+        return;
+      }
+
+      STORE_WHATSAPP_NUMBER = inputVal;
+      localStorage.setItem("kinda_store_whatsapp", inputVal);
+
+      // الحصول على كود الصفحة بالكامل وتحديث رقم الواتساب وقائمة المنتجات بداخله
+      let fullHtml = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+      fullHtml = fullHtml.replace(/let STORE_WHATSAPP_NUMBER = "[^"]*";/, `let STORE_WHATSAPP_NUMBER = "${inputVal}";`);
+      
+      const productsJson = JSON.stringify(products, null, 6);
+      fullHtml = fullHtml.replace(/let products = \[[\s\S]*?\];/, `let products = ${productsJson};`);
+
+      // استخدام textarea مؤقت للنسخ المضمون داخل بيئة المتصفح
+      const tempTextArea = document.createElement("textarea");
+      tempTextArea.value = fullHtml;
+      document.body.appendChild(tempTextArea);
+      tempTextArea.select();
+      try {
+        document.execCommand("copy");
+        showToast("تم نسخ الكود المحدّث مع منتجاتك ورقمك! الصقه في GitHub الآن 📋", "✅");
+        closeSettingsModal();
+      } catch (err) {
+        showToast("حدث خطأ أثناء النسخ، يرجى المحاولة مرة أخرى.", "❌");
+      }
+      document.body.removeChild(tempTextArea);
+    }
+  </script>
+
+</body></html>
