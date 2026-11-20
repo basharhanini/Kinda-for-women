@@ -1,12 +1,6 @@
 {
   "products": [
     {
-      "id": 1795165789637,
-      "name": "منتج تجربة",
-      "price": 100,
-      "image": "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795165787673.jpg"
-    },
-    {
       "id": 1795175655388,
       "name": "االىت",
       "price": 558,
