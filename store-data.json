@@ -175,6 +175,22 @@
       "images": [
         "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795296747442_0.jpg"
       ]
+    },
+    {
+      "id": 1795296964494,
+      "name": "بجامة ستاتي",
+      "price": 50,
+      "desc": "لون زهري فاتح",
+      "sizes": [
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "image": "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795296961797_0.jpg",
+      "images": [
+        "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795296961797_0.jpg"
+      ]
     }
   ],
   "whatsapp": "970597700074",
