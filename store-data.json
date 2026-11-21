@@ -1,22 +1,6 @@
 {
   "products": [
     {
-      "id": 1795206492588,
-      "name": "بجامة ستاتي - لون أبيض اوف وايت",
-      "price": 50,
-      "desc": "متوفر لون ابيض حاليا فقط",
-      "sizes": [
-        "M",
-        "L",
-        "XL",
-        "XXL"
-      ],
-      "image": "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795206488169_0.jpg",
-      "images": [
-        "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795206488169_0.jpg"
-      ]
-    },
-    {
       "id": 1795207515932,
       "name": "بجامة ستاتي",
       "price": 50,
