@@ -111,6 +111,22 @@
       "images": [
         "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795295478286_0.jpg"
       ]
+    },
+    {
+      "id": 1795295845736,
+      "name": "بجامة ستاتي",
+      "price": 50,
+      "desc": "لون نود",
+      "sizes": [
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "image": "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795295842231_0.jpg",
+      "images": [
+        "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795295842231_0.jpg"
+      ]
     }
   ],
   "whatsapp": "970597700074",
