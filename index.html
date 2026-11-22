@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kinda for women - كندة</title>
+    
+    <!-- إعدادات أيقونة الموقع عند حفظه على الشاشة الرئيسية للهاتف -->
+    <link id="faviconLink" rel="icon" type="image/png" href="icon.png">
+    <link id="appleIconLink" rel="apple-touch-icon" href="icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="كندة">
+    <meta name="application-name" content="كندة">
+    <meta name="theme-color" content="#ec4899">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
@@ -100,6 +110,9 @@
 
                 <textarea id="customerAddress" placeholder="العنوان بالتفصيل (الشارع، البناية، الطابق...)" rows="2" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-pink-500"></textarea>
                 
+                <!-- بند ملاحظات عامة إضافية للطلب -->
+                <textarea id="orderNotes" placeholder="ملاحظات إضافية للطلب (اختياري - مثل: وقت التوصيل المناسب...)" rows="2" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-pink-500"></textarea>
+                
                 <button onclick="sendOrderWhatsApp()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl transition text-sm shadow-sm flex items-center justify-center space-x-2 space-x-reverse">
                     <span>إرسال الطلب عبر الواتساب</span>
                 </button>
@@ -168,9 +181,17 @@
 
                 <!-- Upload Logo Directly -->
                 <div class="bg-pink-50 p-4 rounded-xl border border-pink-100">
-                    <h4 class="font-bold text-sm text-gray-700 mb-2">🖼️ رفع شعار المتجر من الاستوديو</h4>
+                    <h4 class="font-bold text-sm text-gray-700 mb-2">🖼️ رفع شعار المتجر (داخل الموقع)</h4>
                     <input type="file" id="logoFileInput" accept="image/*" class="w-full text-xs bg-white p-2.5 rounded-lg border border-gray-300 mb-2 cursor-pointer block">
-                    <button onclick="uploadLogoToGithub()" class="bg-pink-600 text-white text-xs font-bold py-2 px-4 rounded-lg">رفع واعتماد الشعار</button>
+                    <button onclick="uploadLogoToGithub()" class="bg-pink-600 text-white text-xs font-bold py-2 px-4 rounded-lg">رفع واعتماد شعار الموقع</button>
+                </div>
+
+                <!-- Upload App Icon Directly -->
+                <div class="bg-pink-50 p-4 rounded-xl border border-pink-100">
+                    <h4 class="font-bold text-sm text-gray-700 mb-2">📱 رفع أيقونة الشاشة الرئيسية للهاتف</h4>
+                    <p class="text-[11px] text-gray-500 mb-2">هذه الأيقونة ستظهر فقط على شاشة الهاتف عند حفظ الموقع</p>
+                    <input type="file" id="iconFileInput" accept="image/*" class="w-full text-xs bg-white p-2.5 rounded-lg border border-gray-300 mb-2 cursor-pointer block">
+                    <button onclick="uploadAppIconToGithub()" class="bg-pink-600 text-white text-xs font-bold py-2 px-4 rounded-lg">رفع واعتماد أيقونة الهاتف</button>
                 </div>
 
                 <!-- Add Product with Studio Upload -->
@@ -178,7 +199,7 @@
                     <h4 class="font-bold text-sm text-gray-700 mb-2">➕ إضافة منتج جديد (من الاستوديو)</h4>
                     <input type="text" id="newProdName" placeholder="اسم المنتج" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm mb-2">
                     <input type="number" id="newProdPrice" placeholder="السعر (بالشيقل)" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm mb-2">
-                    <textarea id="newProdDesc" placeholder="تفاصيل أخرى حول المنتج (اختياري)" rows="2" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm mb-2"></textarea>
+                    <textarea id="newProdDesc" placeholder="تفاصيل المنتج أو لونه (مثال: لون رمادي بنقاط وردية)" rows="2" class="w-full p-2.5 bg-white border border-gray-200 rounded-lg text-sm mb-2"></textarea>
                     
                     <div class="mb-2 bg-white p-2.5 rounded-lg border border-gray-200">
                         <label class="block text-xs font-bold text-gray-700 mb-1.5">المقاسات المتوفرة:</label>
@@ -249,7 +270,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">تفاصيل المنتج:</label>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">تفاصيل المنتج (اللون):</label>
                     <textarea id="editProdDesc" rows="2" class="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:bg-white focus:border-pink-500 focus:outline-none"></textarea>
                 </div>
 
@@ -298,7 +319,8 @@
                 title: 'تشكيلة الموسم الجديدة',
                 desc: 'أرقى صيحات الموضة النسائية المميزة بأفضل الأسعار'
             },
-            logoUrl: 'logo.png'
+            logoUrl: 'logo.png',
+            iconUrl: 'icon.png'
         };
 
         let cart = [];
@@ -311,7 +333,6 @@
             return [''];
         }
 
-        // Load data from GitHub on startup so all customers see live updates
         async function loadStoreData() {
             try {
                 const res = await fetch(`https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/main/${DATA_FILE}?t=${Date.now()}`);
@@ -328,13 +349,19 @@
         function applyStoreState() {
             document.getElementById('bannerTitle').innerText = storeState.banner.title;
             document.getElementById('bannerDesc').innerText = storeState.banner.desc;
+            
             if (storeState.logoUrl) {
                 document.getElementById('storeLogoImg').src = storeState.logoUrl + '?t=' + Date.now();
             }
+
+            const activeIcon = storeState.iconUrl || 'icon.png';
+            const iconWithTimestamp = activeIcon + '?t=' + Date.now();
+            document.getElementById('faviconLink').href = iconWithTimestamp;
+            document.getElementById('appleIconLink').href = iconWithTimestamp;
+
             renderProducts();
         }
 
-        // Convert File to Base64
         function fileToBase64(file) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
@@ -344,7 +371,6 @@
             });
         }
 
-        // Upload any file to GitHub API
         async function githubUploadFile(path, base64Content, commitMsg) {
             const token = localStorage.getItem('kinda_gh_token');
             if (!token) {
@@ -355,7 +381,6 @@
             const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}`;
             let sha = null;
 
-            // Check if file exists to get SHA
             const getRes = await fetch(url, {
                 headers: { 'Authorization': `token ${token}` }
             });
@@ -387,7 +412,6 @@
             return await putRes.json();
         }
 
-        // Sync storeState to GitHub JSON file
         async function syncStateToGithub() {
             showSync(true);
             try {
@@ -410,7 +434,6 @@
             else el.classList.add('hidden');
         }
 
-        // Upload Logo
         async function uploadLogoToGithub() {
             const fileInput = document.getElementById('logoFileInput');
             if (!fileInput.files[0]) {
@@ -432,7 +455,27 @@
             }
         }
 
-        // Add Product with Image Upload (Supports multiple images, sizes, and description)
+        async function uploadAppIconToGithub() {
+            const fileInput = document.getElementById('iconFileInput');
+            if (!fileInput.files[0]) {
+                alert('اختر صورة الأيقونة من الهاتف أولاً');
+                return;
+            }
+            showSync(true);
+            try {
+                const file = fileInput.files[0];
+                const ext = file.name.split('.').pop();
+                const fileName = `app_icon.${ext}`;
+                const base64 = await fileToBase64(file);
+                await githubUploadFile(fileName, base64, 'Upload app home icon');
+                storeState.iconUrl = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/main/${fileName}`;
+                await syncStateToGithub();
+                fileInput.value = '';
+            } catch (e) {
+                showSync(false);
+            }
+        }
+
         async function addProductWithImage() {
             const name = document.getElementById('newProdName').value.trim();
             const price = parseFloat(document.getElementById('newProdPrice').value);
@@ -484,7 +527,6 @@
             }
         }
 
-        // Open Edit Product Modal
         function openEditProductModal(id) {
             const prod = storeState.products.find(p => p.id === id);
             if (!prod) return;
@@ -495,13 +537,11 @@
             document.getElementById('editProdDesc').value = prod.desc || '';
             document.getElementById('editProdNewFiles').value = '';
 
-            // Set sizes checkboxes
             const prodSizes = prod.sizes || [];
             document.querySelectorAll('input[name="editProdSize"]').forEach(cb => {
                 cb.checked = prodSizes.includes(cb.value);
             });
 
-            // Copy current images
             editingProductImages = [...getProductImages(prod)].filter(Boolean);
             renderEditImagesList();
 
@@ -559,7 +599,6 @@
             try {
                 const updatedImages = [...editingProductImages];
 
-                // Upload any newly selected images
                 for (let i = 0; i < newFilesInput.files.length; i++) {
                     const file = newFilesInput.files[i];
                     const ext = file.name.split('.').pop();
@@ -631,7 +670,6 @@
             }
         }
 
-        // Lightbox Zoom
         function openLightbox(prodId) {
             const prod = storeState.products.find(p => p.id === prodId);
             if (!prod) return;
@@ -654,7 +692,6 @@
             document.getElementById('lightboxModal').classList.add('hidden');
         }
 
-        // Triple Click Settings Trigger
         let clickCount = 0;
         let clickTimer = null;
         document.getElementById('settingsBtn').addEventListener('click', () => {
@@ -759,7 +796,7 @@
                     </div>
                 ` : '';
 
-                const descHtml = p.desc ? `<p class="text-gray-500 text-xs mt-1">${p.desc}</p>` : '';
+                const descHtml = p.desc ? `<p class="text-gray-500 text-xs mt-1">✨ ${p.desc}</p>` : '';
 
                 const sizesHtml = (p.sizes && p.sizes.length > 0) ? `
                     <div class="mt-2">
@@ -832,7 +869,8 @@
                     <div>
                         <span class="font-bold">${item.name}</span>
                         ${item.size ? `<span class="bg-pink-100 text-pink-700 text-[10px] px-1.5 py-0.5 rounded mr-1">مقاس: ${item.size}</span>` : ''}
-                        <span class="text-gray-500 text-xs mr-2">(${item.qty}x)</span>
+                        ${item.desc ? `<div class="text-xs text-gray-500">🎨 اللون/التفاصيل: ${item.desc}</div>` : ''}
+                        <span class="text-gray-500 text-xs mr-2">الكمية: (${item.qty})</span>
                     </div>
                     <div class="flex items-center space-x-3 space-x-reverse">
                         <span class="font-bold text-pink-600">${item.price * item.qty} شيقل</span>
@@ -855,6 +893,7 @@
             const name = document.getElementById('customerName').value.trim();
             const phone = document.getElementById('customerPhone').value.trim();
             const address = document.getElementById('customerAddress').value.trim();
+            const notes = document.getElementById('orderNotes').value.trim();
             const cityChoice = document.querySelector('input[name="cityChoice"]:checked').value;
             const cityName = (cityChoice === 'nablus') ? 'نابلس (توصيل مجاني)' : 'بقية المدن (مع رسوم توصيل 20 شيقل)';
 
@@ -871,10 +910,15 @@
             text += `👤 *الاسم:* ${name}%0A`;
             text += `📞 *الهاتف:* ${phone}%0A`;
             text += `🏙️ *المدينة:* ${cityName}%0A`;
-            text += `📍 *العنوان:* ${address}%0A%0A`;
-            text += `📦 *المنتجات المطلوبة:*%0A`;
+            text += `📍 *العنوان:* ${address}%0A`;
+            if (notes) {
+                text += `📝 *ملاحظات الطلب:* ${notes}%0A`;
+            }
+            text += `%0A📦 *المنتجات المطلوبة:*%0A`;
             cart.forEach(item => {
-                text += `- ${item.name}${item.size ? ` (مقاس: ${item.size})` : ''} (${item.qty}x) : ${item.price * item.qty} شيقل%0A`;
+                const sizeText = item.size ? ` | المقاس: ${item.size}` : '';
+                const descText = item.desc ? ` | اللون/التفاصيل: ${item.desc}` : '';
+                text += `- *${item.name}*${sizeText}${descText} (الكمية: ${item.qty}) : ${item.price * item.qty} شيقل%0A`;
             });
             const sub = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
             const delivery = (cityChoice === 'other') ? 20 : 0;
