@@ -146,7 +146,7 @@
     },
     {
       "id": 1795296111772,
-      "name": "بجامة ستاتي HM 5116 (إنتهى المخزون)",
+      "name": "بجامة ستاتي HM 5116",
       "price": 50,
       "desc": "لون ابيض",
       "sizes": [
@@ -206,6 +206,22 @@
       "image": "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795427042269_0.jpg",
       "images": [
         "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795427042269_0.jpg"
+      ]
+    },
+    {
+      "id": 1795546269686,
+      "name": "بجامة ستاتي JH 8014",
+      "price": 50,
+      "desc": "لون سكني فاتح",
+      "sizes": [
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "image": "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795546266136_0.jpg",
+      "images": [
+        "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795546266136_0.jpg"
       ]
     }
   ],
