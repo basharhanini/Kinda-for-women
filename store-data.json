@@ -223,6 +223,22 @@
       "images": [
         "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795546266136_0.jpg"
       ]
+    },
+    {
+      "id": 1795637004187,
+      "name": "بجامة ستاتي HM 5050",
+      "price": 50,
+      "desc": "لون زيتي قماش مُخمل",
+      "sizes": [
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "image": "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795637000632_0.jpg",
+      "images": [
+        "https://raw.githubusercontent.com/basharhanini/Kinda-for-women/main/images/prod_1795637000632_0.jpg"
+      ]
     }
   ],
   "whatsapp": "972597700074",
